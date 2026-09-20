@@ -551,13 +551,13 @@ def default_models(credential_ref: str = "default") -> List[ModelSpec]:
     """
     return [
         ModelSpec(
-            id="flash-free",
-            model="deepseek/deepseek-v4-flash-0731:free",
+            id="flash",
+            model="deepseek/deepseek-v4-flash",
             capability=2,
-            price_in=0.0,
-            price_out=0.0,
-            label="DeepSeek V4 Flash (free)",
-            strengths="Free tier, long context, fine for routine drafting.",
+            price_in=0.037,
+            price_out=0.073,
+            label="DeepSeek V4 Flash",
+            strengths="Pennies per million tokens, long context, fine for routine drafting.",
             credential_ref=credential_ref,
             context_length=1048576,
         ),

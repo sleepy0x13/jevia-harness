@@ -245,9 +245,7 @@ class Transport:
                     continue
                 if exc.code == 429:
                     raise RateLimitError("upstream rate limited", detail=_trim(text)) from exc
-                raise ProviderError(
-                    f"upstream HTTP {exc.code}", detail=_trim(text)
-                ) from exc
+                raise _upstream(exc.code, text, payload) from exc
             except urllib.error.URLError as exc:
                 last = exc
                 if attempt < self.max_retries - 1:
@@ -268,7 +266,7 @@ class Transport:
                     yield line.decode("utf-8", errors="replace").rstrip("\n")
         except urllib.error.HTTPError as exc:
             text = exc.read().decode("utf-8", errors="replace")
-            raise ProviderError(f"upstream HTTP {exc.code}", detail=_trim(text)) from exc
+            raise _upstream(exc.code, text, payload) from exc
         except urllib.error.URLError as exc:
             raise ProviderError(f"network error: {exc.reason}") from exc
 
@@ -276,6 +274,20 @@ class Transport:
 def _trim(text: str, limit: int = 600) -> str:
     text = text.strip()
     return text if len(text) <= limit else text[:limit] + "..."
+
+
+def _upstream(code: int, text: str, payload: dict) -> ProviderError:
+    """Turn an upstream status into something a person can act on.
+
+    A 404 almost always means the model id is gone or misspelled, and the bare
+    status tells you nothing about which of your models it was.
+    """
+    model = str(payload.get("model") or "").strip()
+    if code == 404 and model:
+        return ProviderError(f"no such model: {model}", detail=_trim(text))
+    if code in (401, 403):
+        return ProviderError("upstream rejected the key", detail=_trim(text))
+    return ProviderError(f"upstream HTTP {code}", detail=_trim(text))
 
 
 def _message_text(message: dict) -> str:

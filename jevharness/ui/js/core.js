@@ -17,10 +17,10 @@ export const STANCES = {
   careful: { decision_abstain_below: 0.7, noul_uncertain_low: 0.25, noul_uncertain_high: 0.75, capability_round_up_below: 0.7 },
 };
 
-// The two free-or-nearly models every new install starts with; both run on an
+// The two cheap models every new install starts with; both run on an
 // OpenRouter key, and each can be swapped out in Settings.
 const STARTER_MODELS = [
-  { id: "m1", model: "deepseek/deepseek-v4-flash-0731:free", capability: 2, price_in: 0, price_out: 0, label: "DeepSeek V4 Flash (free)" },
+  { id: "m1", model: "deepseek/deepseek-v4-flash", capability: 2, price_in: 0.037, price_out: 0.073, label: "DeepSeek V4 Flash" },
   { id: "m2", model: "qwen/qwen3.7-flash", capability: 3, price_in: 0.03, price_out: 0.13, label: "Qwen3.7 Flash" },
 ];
 
