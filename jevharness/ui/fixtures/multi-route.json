@@ -1,0 +1,1217 @@
+{
+ "name": "multi-route",
+ "title": "Several steps, one routing call · 多子任务分流",
+ "description": "Jev rates every step in one batch; the policy rounds, raises on low confidence and picks the cheapest eligible model. A step already written in the material is skipped.",
+ "synthetic": true,
+ "note": "Synthetic: produced offline by scripts/make_fixtures.py with scripted answers. Not a measurement of Jev or of any model.",
+ "events": [
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e1",
+   "seq": 1,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "run.started",
+   "actor": "policy",
+   "stage": "run",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "ui_language": "en",
+    "app_mode": "auto",
+    "operation": "initial",
+    "rules_version": "policy-2026-09-20"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e2",
+   "seq": 2,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "assess",
+    "questions": [
+     {
+      "question_id": "__needs_research__",
+      "type": "noul",
+      "label": "Answering this well needs facts that are not in the material above — current events, prices, documentation, specifics about the world. Answer no if the material is enough, or if the task is pure comp…",
+      "target": "the task"
+     },
+     {
+      "question_id": "__multi_step__",
+      "type": "noul",
+      "label": "Doing this well takes several distinct stages or parts — for example gathering material, then analysing it, then writing it up, or a piece with separate sections that each need their own work — rathe…",
+      "target": "the task"
+     },
+     {
+      "question_id": "__wants_app__",
+      "type": "noul",
+      "label": "The user wants something to use or play on screen — an app, game, tool, form, calculator, timer, dashboard, tracker or web page — rather than an answer or a document to read. Answer no for questions,…",
+      "target": "the task"
+     }
+    ],
+    "count": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e3",
+   "seq": 3,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-c52383b82560",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "assess",
+    "results": [
+     {
+      "question_id": "__needs_research__",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "__multi_step__",
+      "type": "noul",
+      "probability_yes": 0.88,
+      "confidence": null
+     },
+     {
+      "question_id": "__wants_app__",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e4",
+   "seq": 4,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__needs_research__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.research_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.1,
+     "threshold": 0.5
+    },
+    "action": "use the material given"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e5",
+   "seq": 5,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__multi_step__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.multi_step_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.88,
+     "threshold": 0.5
+    },
+    "action": "compile a plan with steps"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e6",
+   "seq": 6,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__wants_app__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.app_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.1,
+     "threshold": 0.6
+    },
+    "action": "answer in text"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e7",
+   "seq": 7,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.started",
+   "actor": "llm",
+   "stage": "plan",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "compile",
+    "model": "demo/mid"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e8",
+   "seq": 8,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.completed",
+   "actor": "llm",
+   "stage": "plan",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-58415d500970",
+    "cost_usd": 0.0004,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "compile",
+    "model": "demo/mid",
+    "input_tokens": 200,
+    "output_tokens": 60,
+    "chars": 363
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e9",
+   "seq": 9,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "llm",
+   "stage": "plan",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-58415d500970",
+    "cost_usd": 0.0004,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "rule": "plan.compiled",
+    "rule_version": "v1",
+    "inputs": {
+     "source": "compiled",
+     "cache_key_version": "plans/v2",
+     "steps": 3,
+     "decisions": 0
+    },
+    "action": "compare then recommend"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e10",
+   "seq": 10,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-routing-2",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "routing",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "route",
+    "questions": [
+     {
+      "question_id": "c0",
+      "type": "score",
+      "label": "How much capability does this step require? Judge the work itself, not its length, and say so honestly if the decisions already made are the entire answer. The step is: Extract the prices from the th…",
+      "target": "Extract the prices from the three quotes",
+      "levels": [
+       "Nothing to write: the answer is a decision, not prose. A label, a rating, a yes…",
+       "Mechanical: copy, reformat, extract fields or fill a fixed template. No judgeme…",
+       "Routine: ordinary drafting, translation, summarising, or small code changes aga…",
+       "Hard: multi-step reasoning, unfamiliar or tricky code, or weighing material tha…",
+       "Frontier: novel design, subtle proofs, or a high-stakes irreversible judgement …"
+      ]
+     },
+     {
+      "question_id": "w0",
+      "type": "noul",
+      "label": "Does this step need facts looked up on the web that the material does not already contain? — Extract the prices from the three quotes",
+      "target": "Extract the prices from the three quotes"
+     },
+     {
+      "question_id": "d0",
+      "type": "noul",
+      "label": "The material already contains a FINISHED, WRITTEN version of this part, so producing it again would be pure duplication. Answer no if the material merely contains facts about it — the part still has …",
+      "target": "Extract the prices from the three quotes"
+     },
+     {
+      "question_id": "c1",
+      "type": "score",
+      "label": "How much capability does this step require? Judge the work itself, not its length, and say so honestly if the decisions already made are the entire answer. The step is: Weigh the trade-offs between t…",
+      "target": "Weigh the trade-offs between the vendors",
+      "levels": [
+       "Nothing to write: the answer is a decision, not prose. A label, a rating, a yes…",
+       "Mechanical: copy, reformat, extract fields or fill a fixed template. No judgeme…",
+       "Routine: ordinary drafting, translation, summarising, or small code changes aga…",
+       "Hard: multi-step reasoning, unfamiliar or tricky code, or weighing material tha…",
+       "Frontier: novel design, subtle proofs, or a high-stakes irreversible judgement …"
+      ]
+     },
+     {
+      "question_id": "w1",
+      "type": "noul",
+      "label": "Does this step need facts looked up on the web that the material does not already contain? — Weigh the trade-offs between the vendors",
+      "target": "Weigh the trade-offs between the vendors"
+     },
+     {
+      "question_id": "d1",
+      "type": "noul",
+      "label": "The material already contains a FINISHED, WRITTEN version of this part, so producing it again would be pure duplication. Answer no if the material merely contains facts about it — the part still has …",
+      "target": "Weigh the trade-offs between the vendors"
+     },
+     {
+      "question_id": "c2",
+      "type": "score",
+      "label": "How much capability does this step require? Judge the work itself, not its length, and say so honestly if the decisions already made are the entire answer. The step is: Summary table",
+      "target": "Summary table",
+      "levels": [
+       "Nothing to write: the answer is a decision, not prose. A label, a rating, a yes…",
+       "Mechanical: copy, reformat, extract fields or fill a fixed template. No judgeme…",
+       "Routine: ordinary drafting, translation, summarising, or small code changes aga…",
+       "Hard: multi-step reasoning, unfamiliar or tricky code, or weighing material tha…",
+       "Frontier: novel design, subtle proofs, or a high-stakes irreversible judgement …"
+      ]
+     },
+     {
+      "question_id": "w2",
+      "type": "noul",
+      "label": "Does this step need facts looked up on the web that the material does not already contain? — Summary table",
+      "target": "Summary table"
+     },
+     {
+      "question_id": "d2",
+      "type": "noul",
+      "label": "The material already contains a FINISHED, WRITTEN version of this part, so producing it again would be pure duplication. Answer no if the material merely contains facts about it — the part still has …",
+      "target": "Summary table"
+     },
+     {
+      "question_id": "__independent__",
+      "type": "noul",
+      "label": "Each step will be told the full list of steps and which one is theirs. Given that, can they be written at the same time? Answer no only if a step genuinely needs to read the finished text of another …"
+     },
+     {
+      "question_id": "__assembly__",
+      "type": "noul",
+      "label": "Do these steps need rewriting into one continuous piece at the end, rather than simply being placed one after another under their own headings?"
+     }
+    ],
+    "count": 11
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e11",
+   "seq": 11,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-routing-2",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "routing",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-1c667560dd4d",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "route",
+    "results": [
+     {
+      "question_id": "c0",
+      "type": "score",
+      "score": 1.2,
+      "probabilities": {
+       "0": 0.0,
+       "1": 1.0,
+       "2": 0.0,
+       "3": 0.0,
+       "4": 0.0
+      },
+      "confidence": 0.9,
+      "legend": {
+       "0": "level 0",
+       "1": "level 1",
+       "2": "level 2",
+       "3": "level 3",
+       "4": "level 4"
+      }
+     },
+     {
+      "question_id": "w0",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "d0",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "c1",
+      "type": "score",
+      "score": 2.6,
+      "probabilities": {
+       "0": 0.0,
+       "1": 0.0,
+       "2": 0.0,
+       "3": 1.0,
+       "4": 0.0
+      },
+      "confidence": 0.42,
+      "legend": {
+       "0": "level 0",
+       "1": "level 1",
+       "2": "level 2",
+       "3": "level 3",
+       "4": "level 4"
+      }
+     },
+     {
+      "question_id": "w1",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "d1",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "c2",
+      "type": "score",
+      "score": 2.1,
+      "probabilities": {
+       "0": 0.0,
+       "1": 0.0,
+       "2": 1.0,
+       "3": 0.0,
+       "4": 0.0
+      },
+      "confidence": 0.8,
+      "legend": {
+       "0": "level 0",
+       "1": "level 1",
+       "2": "level 2",
+       "3": "level 3",
+       "4": "level 4"
+      }
+     },
+     {
+      "question_id": "w2",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "d2",
+      "type": "noul",
+      "probability_yes": 0.9,
+      "confidence": null
+     },
+     {
+      "question_id": "__independent__",
+      "type": "noul",
+      "probability_yes": 0.8,
+      "confidence": null
+     },
+     {
+      "question_id": "__assembly__",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 11
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e12",
+   "seq": 12,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-routing-2",
+   "question_id": null,
+   "subtask_id": "step-b8eebae1",
+   "kind": "routing.assessed",
+   "actor": "jev",
+   "stage": "routing",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "title": "Extract the prices from the three quotes",
+    "raw_score": 1.2,
+    "levels": 5,
+    "confidence": 0.9,
+    "probabilities": {
+     "0": 0.0,
+     "1": 1.0,
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0
+    },
+    "role": "extractor",
+    "role_source": "plan",
+    "role_probability": null,
+    "web_probability": 0.1,
+    "done_probability": 0.05,
+    "extra": {}
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e13",
+   "seq": 13,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-routing-2",
+   "question_id": null,
+   "subtask_id": "step-b8eebae1",
+   "kind": "routing.selected",
+   "actor": "policy",
+   "stage": "routing",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "title": "Extract the prices from the three quotes",
+    "required_capability": 1,
+    "raw_score": 1.2,
+    "adopted": 1,
+    "candidates": [
+     {
+      "model_id": "free",
+      "label": "Free (demo)",
+      "capability": 2,
+      "eligible": true,
+      "price": "free",
+      "cost_index": 0.0,
+      "selected": true
+     },
+     {
+      "model_id": "tiny",
+      "label": "Tiny (demo)",
+      "capability": 1,
+      "eligible": true,
+      "price": "priced",
+      "cost_index": 0.11,
+      "selected": false
+     },
+     {
+      "model_id": "mid",
+      "label": "Mid (demo)",
+      "capability": 3,
+      "eligible": true,
+      "price": "priced",
+      "cost_index": 0.42,
+      "selected": false
+     },
+     {
+      "model_id": "big",
+      "label": "Big (demo)",
+      "capability": 4,
+      "eligible": true,
+      "price": "priced",
+      "cost_index": 13.0,
+      "selected": false
+     }
+    ],
+    "selected": {
+     "model_id": "free",
+     "label": "Free (demo)",
+     "capability": 2
+    },
+    "basis": "configured price table, weighted 1:3 input:output",
+    "downgraded": false,
+    "rules": [
+     "capability.round_to_nearest/v1"
+    ]
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e14",
+   "seq": 14,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-routing-2",
+   "question_id": null,
+   "subtask_id": "step-b07f9ea1",
+   "kind": "routing.assessed",
+   "actor": "jev",
+   "stage": "routing",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "title": "Weigh the trade-offs between the vendors",
+    "raw_score": 2.6,
+    "levels": 5,
+    "confidence": 0.42,
+    "probabilities": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0,
+     "3": 1.0,
+     "4": 0.0
+    },
+    "role": "analyst",
+    "role_source": "plan",
+    "role_probability": null,
+    "web_probability": 0.1,
+    "done_probability": 0.05,
+    "extra": {}
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e15",
+   "seq": 15,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-routing-2",
+   "question_id": null,
+   "subtask_id": "step-b07f9ea1",
+   "kind": "routing.selected",
+   "actor": "policy",
+   "stage": "routing",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "title": "Weigh the trade-offs between the vendors",
+    "required_capability": 4,
+    "raw_score": 2.6,
+    "adopted": 4,
+    "candidates": [
+     {
+      "model_id": "free",
+      "label": "Free (demo)",
+      "capability": 2,
+      "eligible": false,
+      "price": "free",
+      "cost_index": 0.0,
+      "selected": false
+     },
+     {
+      "model_id": "tiny",
+      "label": "Tiny (demo)",
+      "capability": 1,
+      "eligible": false,
+      "price": "priced",
+      "cost_index": 0.11,
+      "selected": false
+     },
+     {
+      "model_id": "mid",
+      "label": "Mid (demo)",
+      "capability": 3,
+      "eligible": false,
+      "price": "priced",
+      "cost_index": 0.42,
+      "selected": false
+     },
+     {
+      "model_id": "big",
+      "label": "Big (demo)",
+      "capability": 4,
+      "eligible": true,
+      "price": "priced",
+      "cost_index": 13.0,
+      "selected": true
+     }
+    ],
+    "selected": {
+     "model_id": "big",
+     "label": "Big (demo)",
+     "capability": 4
+    },
+    "basis": "configured price table, weighted 1:3 input:output",
+    "downgraded": false,
+    "rules": [
+     "capability.round_to_nearest/v1",
+     "capability.round_up_below_certainty/v1"
+    ]
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e16",
+   "seq": 16,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-routing-2",
+   "question_id": null,
+   "subtask_id": "step-afb62440",
+   "kind": "routing.assessed",
+   "actor": "jev",
+   "stage": "routing",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "title": "Summary table",
+    "raw_score": 2.1,
+    "levels": 5,
+    "confidence": 0.8,
+    "probabilities": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 1.0,
+     "3": 0.0,
+     "4": 0.0
+    },
+    "role": "writer",
+    "role_source": "plan",
+    "role_probability": null,
+    "web_probability": 0.1,
+    "done_probability": 0.9,
+    "extra": {}
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e17",
+   "seq": 17,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-routing-2",
+   "question_id": null,
+   "subtask_id": "step-afb62440",
+   "kind": "routing.selected",
+   "actor": "policy",
+   "stage": "routing",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "title": "Summary table",
+    "required_capability": 2,
+    "raw_score": 2.1,
+    "adopted": 2,
+    "candidates": [
+     {
+      "model_id": "free",
+      "label": "Free (demo)",
+      "capability": 2,
+      "eligible": true,
+      "price": "free",
+      "cost_index": 0.0,
+      "selected": true
+     },
+     {
+      "model_id": "tiny",
+      "label": "Tiny (demo)",
+      "capability": 1,
+      "eligible": false,
+      "price": "priced",
+      "cost_index": 0.11,
+      "selected": false
+     },
+     {
+      "model_id": "mid",
+      "label": "Mid (demo)",
+      "capability": 3,
+      "eligible": true,
+      "price": "priced",
+      "cost_index": 0.42,
+      "selected": false
+     },
+     {
+      "model_id": "big",
+      "label": "Big (demo)",
+      "capability": 4,
+      "eligible": true,
+      "price": "priced",
+      "cost_index": 13.0,
+      "selected": false
+     }
+    ],
+    "selected": {
+     "model_id": "free",
+     "label": "Free (demo)",
+     "capability": 2
+    },
+    "basis": "configured price table, weighted 1:3 input:output",
+    "downgraded": false,
+    "rules": [
+     "capability.round_to_nearest/v1"
+    ]
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e18",
+   "seq": 18,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-3",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "purpose": "decide",
+    "questions": [
+     {
+      "question_id": "__capability__",
+      "type": "score",
+      "label": "How much capability does this step require? Judge the work itself, not its length, and say so honestly if the decisions already made are the entire answer. The step is: Recommend a vendor.",
+      "target": "the model for this answer",
+      "levels": [
+       "Nothing to write: the answer is a decision, not prose. A label, a rating, a yes…",
+       "Mechanical: copy, reformat, extract fields or fill a fixed template. No judgeme…",
+       "Routine: ordinary drafting, translation, summarising, or small code changes aga…",
+       "Hard: multi-step reasoning, unfamiliar or tricky code, or weighing material tha…",
+       "Frontier: novel design, subtle proofs, or a high-stakes irreversible judgement …"
+      ]
+     }
+    ],
+    "count": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e19",
+   "seq": 19,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-3",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": {
+    "call_id": "call-da564eea1384",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "decide",
+    "results": [
+     {
+      "question_id": "__capability__",
+      "type": "score",
+      "score": 2.0,
+      "probabilities": {
+       "0": 0.0,
+       "1": 0.0,
+       "2": 1.0,
+       "3": 0.0,
+       "4": 0.0
+      },
+      "confidence": 0.9,
+      "legend": {
+       "0": "level 0",
+       "1": "level 1",
+       "2": "level 2",
+       "3": "level 3",
+       "4": "level 4"
+      }
+     }
+    ],
+    "missing": [],
+    "count": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e20",
+   "seq": 20,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": "step-afb62440",
+   "kind": "generation.skipped",
+   "actor": "policy",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "scope": "step",
+    "title": "Summary table",
+    "reason": "the material already contains a finished version of this part",
+    "rule": "routing.already_done_at_or_above/v1",
+    "llm_calls_so_far": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e21",
+   "seq": 21,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": "step-b8eebae1",
+   "kind": "llm.started",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "purpose": "subtask",
+    "model": "demo/free"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e22",
+   "seq": 22,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": "step-b8eebae1",
+   "kind": "llm.completed",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": {
+    "call_id": "call-f054ac5feccd",
+    "cost_usd": 0.0004,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "subtask",
+    "model": "demo/free",
+    "input_tokens": 200,
+    "output_tokens": 60,
+    "chars": 27
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e23",
+   "seq": 23,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": "step-b8eebae1",
+   "kind": "output.version",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "target": "step-b8eebae1",
+    "version": 1,
+    "title": "Extract the prices from the three quotes",
+    "depends_on": [],
+    "mode": "written"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e24",
+   "seq": 24,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": "step-b07f9ea1",
+   "kind": "llm.started",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 2,
+   "usage": null,
+   "payload": {
+    "purpose": "subtask",
+    "model": "demo/big"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e25",
+   "seq": 25,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": "step-b07f9ea1",
+   "kind": "llm.completed",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 2,
+   "usage": {
+    "call_id": "call-72a7ad222af2",
+    "cost_usd": 0.0004,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "subtask",
+    "model": "demo/big",
+    "input_tokens": 200,
+    "output_tokens": 60,
+    "chars": 53
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e26",
+   "seq": 26,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": "step-b07f9ea1",
+   "kind": "output.version",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 2,
+   "usage": null,
+   "payload": {
+    "target": "step-b07f9ea1",
+    "version": 1,
+    "title": "Weigh the trade-offs between the vendors",
+    "depends_on": [],
+    "mode": "written"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e27",
+   "seq": 27,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "output.version",
+   "actor": "policy",
+   "stage": "assembly",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 2,
+   "usage": null,
+   "payload": {
+    "target": "answer",
+    "version": 1,
+    "mode": "joined",
+    "depends_on": [
+     "step-b8eebae1@v1",
+     "step-b07f9ea1@v1"
+    ]
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-multi-route-e28",
+   "seq": 28,
+   "run_id": "fixture-multi-route",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "run.completed",
+   "actor": "policy",
+   "stage": "run",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 2,
+   "usage": null,
+   "payload": {
+    "status": "completed",
+    "llm_calls": 3,
+    "jev_calls": 3,
+    "jev_questions": 15,
+    "tool_calls": 0,
+    "generation": "ran",
+    "needs_review": [],
+    "cost": {
+     "known_usd": 0.00126,
+     "unknown_calls": 0
+    }
+   }
+  }
+ ]
+}

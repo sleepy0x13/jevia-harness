@@ -1,0 +1,487 @@
+{
+ "name": "feedback-zh",
+ "title": "Chinese feedback classification · 中文客户反馈分类",
+ "description": "One batch, 14 questions: a category per item and a separate urgency flag. No model writes anything.",
+ "synthetic": true,
+ "note": "Synthetic: produced offline by scripts/make_fixtures.py with scripted answers. Not a measurement of Jev or of any model.",
+ "events": [
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-feedback-zh-e1",
+   "seq": 1,
+   "run_id": "fixture-feedback-zh",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "run.started",
+   "actor": "policy",
+   "stage": "run",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "ui_language": "en",
+    "app_mode": "auto",
+    "operation": "initial",
+    "rules_version": "policy-2026-09-20"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-feedback-zh-e2",
+   "seq": 2,
+   "run_id": "fixture-feedback-zh",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "plan",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "plan.declared",
+    "rule_version": "v1",
+    "inputs": {
+     "source": "declared",
+     "cache_key_version": "plans/v2",
+     "steps": 0,
+     "decisions": 14
+    },
+    "action": "declared"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-feedback-zh-e3",
+   "seq": 3,
+   "run_id": "fixture-feedback-zh",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "decide",
+    "questions": [
+     {
+      "question_id": "fb1_category",
+      "type": "choice",
+      "label": "这条反馈属于哪一类？「付款后页面一直转圈，订单也没生成。」",
+      "target": "付款后页面一直转圈，订单也没生成。",
+      "options": {
+       "bug_report": "Bug report",
+       "feature_request": "Feature request",
+       "other": "Other"
+      }
+     },
+     {
+      "question_id": "fb1_urgent",
+      "type": "noul",
+      "label": "这条反馈需要今天处理吗？「付款后页面一直转圈，订单也没生成。」",
+      "target": "付款后页面一直转圈，订单也没生成。"
+     },
+     {
+      "question_id": "fb2_category",
+      "type": "choice",
+      "label": "这条反馈属于哪一类？「希望能导出 Excel 格式的账单。」",
+      "target": "希望能导出 Excel 格式的账单。",
+      "options": {
+       "bug_report": "Bug report",
+       "feature_request": "Feature request",
+       "other": "Other"
+      }
+     },
+     {
+      "question_id": "fb2_urgent",
+      "type": "noul",
+      "label": "这条反馈需要今天处理吗？「希望能导出 Excel 格式的账单。」",
+      "target": "希望能导出 Excel 格式的账单。"
+     },
+     {
+      "question_id": "fb3_category",
+      "type": "choice",
+      "label": "这条反馈属于哪一类？「客服回复很快，谢谢！」",
+      "target": "客服回复很快，谢谢！",
+      "options": {
+       "bug_report": "Bug report",
+       "feature_request": "Feature request",
+       "other": "Other"
+      }
+     },
+     {
+      "question_id": "fb3_urgent",
+      "type": "noul",
+      "label": "这条反馈需要今天处理吗？「客服回复很快，谢谢！」",
+      "target": "客服回复很快，谢谢！"
+     },
+     {
+      "question_id": "fb4_category",
+      "type": "choice",
+      "label": "这条反馈属于哪一类？「iOS 更新后登录就闪退，今天必须处理。」",
+      "target": "iOS 更新后登录就闪退，今天必须处理。",
+      "options": {
+       "bug_report": "Bug report",
+       "feature_request": "Feature request",
+       "other": "Other"
+      }
+     },
+     {
+      "question_id": "fb4_urgent",
+      "type": "noul",
+      "label": "这条反馈需要今天处理吗？「iOS 更新后登录就闪退，今天必须处理。」",
+      "target": "iOS 更新后登录就闪退，今天必须处理。"
+     },
+     {
+      "question_id": "fb5_category",
+      "type": "choice",
+      "label": "这条反馈属于哪一类？「能不能加一个深色模式？」",
+      "target": "能不能加一个深色模式？",
+      "options": {
+       "bug_report": "Bug report",
+       "feature_request": "Feature request",
+       "other": "Other"
+      }
+     },
+     {
+      "question_id": "fb5_urgent",
+      "type": "noul",
+      "label": "这条反馈需要今天处理吗？「能不能加一个深色模式？」",
+      "target": "能不能加一个深色模式？"
+     },
+     {
+      "question_id": "fb6_category",
+      "type": "choice",
+      "label": "这条反馈属于哪一类？「发票抬头改不了，不知道是不是故障。」",
+      "target": "发票抬头改不了，不知道是不是故障。",
+      "options": {
+       "bug_report": "Bug report",
+       "feature_request": "Feature request",
+       "other": "Other"
+      }
+     },
+     {
+      "question_id": "fb6_urgent",
+      "type": "noul",
+      "label": "这条反馈需要今天处理吗？「发票抬头改不了，不知道是不是故障。」",
+      "target": "发票抬头改不了，不知道是不是故障。"
+     },
+     {
+      "question_id": "fb7_category",
+      "type": "choice",
+      "label": "这条反馈属于哪一类？「价格有点贵。」",
+      "target": "价格有点贵。",
+      "options": {
+       "bug_report": "Bug report",
+       "feature_request": "Feature request",
+       "other": "Other"
+      }
+     },
+     {
+      "question_id": "fb7_urgent",
+      "type": "noul",
+      "label": "这条反馈需要今天处理吗？「价格有点贵。」",
+      "target": "价格有点贵。"
+     }
+    ],
+    "count": 14
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-feedback-zh-e4",
+   "seq": 4,
+   "run_id": "fixture-feedback-zh",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-7616b7927dbd",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "decide",
+    "results": [
+     {
+      "question_id": "fb1_category",
+      "type": "choice",
+      "choice": "bug_report",
+      "probabilities": {
+       "bug_report": 0.91,
+       "feature_request": 0.045,
+       "other": 0.045
+      },
+      "confidence": 0.86
+     },
+     {
+      "question_id": "fb1_urgent",
+      "type": "noul",
+      "probability_yes": 0.88,
+      "confidence": null
+     },
+     {
+      "question_id": "fb2_category",
+      "type": "choice",
+      "choice": "feature_request",
+      "probabilities": {
+       "bug_report": 0.08,
+       "feature_request": 0.84,
+       "other": 0.08
+      },
+      "confidence": 0.79
+     },
+     {
+      "question_id": "fb2_urgent",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "fb3_category",
+      "type": "choice",
+      "choice": "other",
+      "probabilities": {
+       "bug_report": 0.115,
+       "feature_request": 0.115,
+       "other": 0.77
+      },
+      "confidence": 0.72
+     },
+     {
+      "question_id": "fb3_urgent",
+      "type": "noul",
+      "probability_yes": 0.03,
+      "confidence": null
+     },
+     {
+      "question_id": "fb4_category",
+      "type": "choice",
+      "choice": "bug_report",
+      "probabilities": {
+       "bug_report": 0.95,
+       "feature_request": 0.025,
+       "other": 0.025
+      },
+      "confidence": 0.9
+     },
+     {
+      "question_id": "fb4_urgent",
+      "type": "noul",
+      "probability_yes": 0.93,
+      "confidence": null
+     },
+     {
+      "question_id": "fb5_category",
+      "type": "choice",
+      "choice": "feature_request",
+      "probabilities": {
+       "bug_report": 0.06,
+       "feature_request": 0.88,
+       "other": 0.06
+      },
+      "confidence": 0.83
+     },
+     {
+      "question_id": "fb5_urgent",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "fb6_category",
+      "type": "choice",
+      "choice": "bug_report",
+      "probabilities": {
+       "bug_report": 0.52,
+       "feature_request": 0.24,
+       "other": 0.24
+      },
+      "confidence": 0.35
+     },
+     {
+      "question_id": "fb6_urgent",
+      "type": "noul",
+      "probability_yes": 0.41,
+      "confidence": null
+     },
+     {
+      "question_id": "fb7_category",
+      "type": "choice",
+      "choice": "other",
+      "probabilities": {
+       "bug_report": 0.185,
+       "feature_request": 0.185,
+       "other": 0.63
+      },
+      "confidence": 0.58
+     },
+     {
+      "question_id": "fb7_urgent",
+      "type": "noul",
+      "probability_yes": 0.08,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 14
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-feedback-zh-e5",
+   "seq": 5,
+   "run_id": "fixture-feedback-zh",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-1",
+   "question_id": "fb6_category",
+   "subtask_id": null,
+   "kind": "policy.review_required",
+   "actor": "policy",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "reason": "low_confidence",
+    "blocking": false,
+    "distribution": {
+     "value": "bug_report",
+     "probabilities": {
+      "bug_report": 0.52,
+      "feature_request": 0.24,
+      "other": 0.24
+     },
+     "confidence": 0.35
+    },
+    "threshold": {
+     "rule": "confidence.abstain_below/v1",
+     "below": 0.55,
+     "measure": "confidence"
+    },
+    "options": []
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-feedback-zh-e6",
+   "seq": 6,
+   "run_id": "fixture-feedback-zh",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-1",
+   "question_id": "fb6_urgent",
+   "subtask_id": null,
+   "kind": "policy.review_required",
+   "actor": "policy",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "reason": "low_confidence",
+    "blocking": false,
+    "distribution": {
+     "value": false,
+     "probability": 0.41
+    },
+    "threshold": {
+     "rule": "noul.uncertain_band/v1",
+     "low": 0.35,
+     "high": 0.65,
+     "measure": "P(yes)"
+    },
+    "options": []
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-feedback-zh-e7",
+   "seq": 7,
+   "run_id": "fixture-feedback-zh",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "generation.skipped",
+   "actor": "policy",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "scope": "run",
+    "reason": "the decisions are the deliverable",
+    "rule": "plan.answer_from_decisions/v1",
+    "llm_calls_so_far": 0
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-feedback-zh-e8",
+   "seq": 8,
+   "run_id": "fixture-feedback-zh",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "run.completed",
+   "actor": "policy",
+   "stage": "run",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "status": "completed",
+    "llm_calls": 0,
+    "jev_calls": 1,
+    "jev_questions": 14,
+    "tool_calls": 0,
+    "generation": "skipped",
+    "needs_review": [],
+    "cost": {
+     "known_usd": 2e-05,
+     "unknown_calls": 0
+    }
+   }
+  }
+ ]
+}

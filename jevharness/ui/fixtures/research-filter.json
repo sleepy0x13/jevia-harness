@@ -1,0 +1,5054 @@
+{
+ "name": "research-filter",
+ "title": "Research: sources filtered · 研究材料筛选",
+ "description": "Sections judged in budget-sized batches; the rest stay Not assessed. Sufficiency is checked on what the writer receives, and a second round is run when the first is not enough.",
+ "synthetic": true,
+ "note": "Synthetic: produced offline by scripts/make_fixtures.py with scripted answers. Not a measurement of Jev or of any model.",
+ "events": [
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e1",
+   "seq": 1,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "run.started",
+   "actor": "policy",
+   "stage": "run",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "ui_language": "en",
+    "app_mode": "auto",
+    "operation": "initial",
+    "rules_version": "policy-2026-09-20"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e2",
+   "seq": 2,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "assess",
+    "questions": [
+     {
+      "question_id": "__needs_research__",
+      "type": "noul",
+      "label": "Answering this well needs facts that are not in the material above — current events, prices, documentation, specifics about the world. Answer no if the material is enough, or if the task is pure comp…",
+      "target": "the task"
+     },
+     {
+      "question_id": "__multi_step__",
+      "type": "noul",
+      "label": "Doing this well takes several distinct stages or parts — for example gathering material, then analysing it, then writing it up, or a piece with separate sections that each need their own work — rathe…",
+      "target": "the task"
+     },
+     {
+      "question_id": "__wants_app__",
+      "type": "noul",
+      "label": "The user wants something to use or play on screen — an app, game, tool, form, calculator, timer, dashboard, tracker or web page — rather than an answer or a document to read. Answer no for questions,…",
+      "target": "the task"
+     }
+    ],
+    "count": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e3",
+   "seq": 3,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-a6acfa38e60e",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "assess",
+    "results": [
+     {
+      "question_id": "__needs_research__",
+      "type": "noul",
+      "probability_yes": 0.93,
+      "confidence": null
+     },
+     {
+      "question_id": "__multi_step__",
+      "type": "noul",
+      "probability_yes": 0.08,
+      "confidence": null
+     },
+     {
+      "question_id": "__wants_app__",
+      "type": "noul",
+      "probability_yes": 0.08,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e4",
+   "seq": 4,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__needs_research__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.research_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.93,
+     "threshold": 0.5
+    },
+    "action": "search the web"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e5",
+   "seq": 5,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__multi_step__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.multi_step_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.08,
+     "threshold": 0.5
+    },
+    "action": "no forced split"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e6",
+   "seq": 6,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__wants_app__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.app_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.08,
+     "threshold": 0.6
+    },
+    "action": "answer in text"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e7",
+   "seq": 7,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "plan",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "plan.deterministic",
+    "rule_version": "v1",
+    "inputs": {
+     "source": "deterministic",
+     "cache_key_version": "plans/v2",
+     "steps": 0,
+     "decisions": 0
+    },
+    "action": "research"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e8",
+   "seq": 8,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.started",
+   "actor": "llm",
+   "stage": "research",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "search_terms",
+    "model": "demo/free"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e9",
+   "seq": 9,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.completed",
+   "actor": "llm",
+   "stage": "research",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-7bb0499fa50b",
+    "cost_usd": 1e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "search_terms",
+    "model": "demo/free",
+    "input_tokens": 50,
+    "output_tokens": 8,
+    "chars": 34
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e10",
+   "seq": 10,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "stage.entered",
+   "actor": "tool",
+   "stage": "search",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "detail": "ev battery recycling rate 2026"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e11",
+   "seq": 11,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-source_triage-2",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "source_triage",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "triage",
+    "questions": [
+     {
+      "question_id": "h0",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 1.0 on EV…",
+      "target": "Source 1.0 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h1",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 1.1 on EV…",
+      "target": "Source 1.1 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h2",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 1.2 on EV…",
+      "target": "Source 1.2 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h3",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 1.3 on EV…",
+      "target": "Source 1.3 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h4",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 1.4 on EV…",
+      "target": "Source 1.4 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h5",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 1.5 on EV…",
+      "target": "Source 1.5 on EV battery recycling (example.org)"
+     }
+    ],
+    "count": 6
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e12",
+   "seq": 12,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-source_triage-2",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "source_triage",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-10285a78157d",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "triage",
+    "results": [
+     {
+      "question_id": "h0",
+      "type": "noul",
+      "probability_yes": 0.91,
+      "confidence": null
+     },
+     {
+      "question_id": "h1",
+      "type": "noul",
+      "probability_yes": 0.84,
+      "confidence": null
+     },
+     {
+      "question_id": "h2",
+      "type": "noul",
+      "probability_yes": 0.35,
+      "confidence": null
+     },
+     {
+      "question_id": "h3",
+      "type": "noul",
+      "probability_yes": 0.72,
+      "confidence": null
+     },
+     {
+      "question_id": "h4",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "h5",
+      "type": "noul",
+      "probability_yes": 0.66,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 6
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e13",
+   "seq": 13,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-source_triage-2",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "source_triage",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "rule": "triage.keep_above",
+    "rule_version": "v1",
+    "inputs": {
+     "threshold": 0.55,
+     "top_k": 3,
+     "results": 6
+    },
+    "action": "open 3 of 6"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e14",
+   "seq": 14,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "stage.entered",
+   "actor": "tool",
+   "stage": "fetch",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "detail": "3 pages"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e15",
+   "seq": 15,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-3",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": null,
+   "payload": {
+    "purpose": "filter",
+    "questions": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "label": "Does section [S0] contain information that helps answer the question?",
+      "target": "Search results · ev battery recycling rate 2026"
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "label": "Does section [S1] contain information that helps answer the question?",
+      "target": "p0 §0"
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "label": "Does section [S2] contain information that helps answer the question?",
+      "target": "p0 §1"
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "label": "Does section [S3] contain information that helps answer the question?",
+      "target": "p0 §2"
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "label": "Does section [S4] contain information that helps answer the question?",
+      "target": "p0 §3"
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "label": "Does section [S5] contain information that helps answer the question?",
+      "target": "p0 §4"
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "label": "Does section [S6] contain information that helps answer the question?",
+      "target": "p0 §5"
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "label": "Does section [S7] contain information that helps answer the question?",
+      "target": "p0 §6"
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "label": "Does section [S8] contain information that helps answer the question?",
+      "target": "p0 §7"
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "label": "Does section [S9] contain information that helps answer the question?",
+      "target": "p0 §8"
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "label": "Does section [S10] contain information that helps answer the question?",
+      "target": "p0 §9"
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "label": "Does section [S11] contain information that helps answer the question?",
+      "target": "p0 §10"
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "label": "Does section [S12] contain information that helps answer the question?",
+      "target": "p0 §11"
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "label": "Does section [S13] contain information that helps answer the question?",
+      "target": "p0 §12"
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "label": "Does section [S14] contain information that helps answer the question?",
+      "target": "p0 §13"
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "label": "Does section [S15] contain information that helps answer the question?",
+      "target": "p0 §14"
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "label": "Does section [S16] contain information that helps answer the question?",
+      "target": "p0 §15"
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "label": "Does section [S17] contain information that helps answer the question?",
+      "target": "p0 §16"
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "label": "Does section [S18] contain information that helps answer the question?",
+      "target": "p0 §17"
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "label": "Does section [S19] contain information that helps answer the question?",
+      "target": "p0 §18"
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "label": "Does section [S20] contain information that helps answer the question?",
+      "target": "p0 §19"
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "label": "Does section [S21] contain information that helps answer the question?",
+      "target": "p0 §20"
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "label": "Does section [S22] contain information that helps answer the question?",
+      "target": "p0 §21"
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "label": "Does section [S23] contain information that helps answer the question?",
+      "target": "p0 §22"
+     }
+    ],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e16",
+   "seq": 16,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-3",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 1,
+   "usage": {
+    "call_id": "call-60a0831a77fd",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "filter",
+    "results": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e17",
+   "seq": 17,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-4",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 2,
+   "usage": null,
+   "payload": {
+    "purpose": "filter",
+    "questions": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "label": "Does section [S0] contain information that helps answer the question?",
+      "target": "p0 §23"
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "label": "Does section [S1] contain information that helps answer the question?",
+      "target": "p0 §24"
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "label": "Does section [S2] contain information that helps answer the question?",
+      "target": "p0 §25"
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "label": "Does section [S3] contain information that helps answer the question?",
+      "target": "p0 §26"
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "label": "Does section [S4] contain information that helps answer the question?",
+      "target": "p0 §27"
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "label": "Does section [S5] contain information that helps answer the question?",
+      "target": "p0 §28"
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "label": "Does section [S6] contain information that helps answer the question?",
+      "target": "p0 §29"
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "label": "Does section [S7] contain information that helps answer the question?",
+      "target": "p1 §0"
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "label": "Does section [S8] contain information that helps answer the question?",
+      "target": "p1 §1"
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "label": "Does section [S9] contain information that helps answer the question?",
+      "target": "p1 §2"
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "label": "Does section [S10] contain information that helps answer the question?",
+      "target": "p1 §3"
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "label": "Does section [S11] contain information that helps answer the question?",
+      "target": "p1 §4"
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "label": "Does section [S12] contain information that helps answer the question?",
+      "target": "p1 §5"
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "label": "Does section [S13] contain information that helps answer the question?",
+      "target": "p1 §6"
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "label": "Does section [S14] contain information that helps answer the question?",
+      "target": "p1 §7"
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "label": "Does section [S15] contain information that helps answer the question?",
+      "target": "p1 §8"
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "label": "Does section [S16] contain information that helps answer the question?",
+      "target": "p1 §9"
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "label": "Does section [S17] contain information that helps answer the question?",
+      "target": "p1 §10"
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "label": "Does section [S18] contain information that helps answer the question?",
+      "target": "p1 §11"
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "label": "Does section [S19] contain information that helps answer the question?",
+      "target": "p1 §12"
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "label": "Does section [S20] contain information that helps answer the question?",
+      "target": "p1 §13"
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "label": "Does section [S21] contain information that helps answer the question?",
+      "target": "p1 §14"
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "label": "Does section [S22] contain information that helps answer the question?",
+      "target": "p1 §15"
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "label": "Does section [S23] contain information that helps answer the question?",
+      "target": "p1 §16"
+     }
+    ],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e18",
+   "seq": 18,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-4",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 2,
+   "usage": {
+    "call_id": "call-34eaf432ce4e",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "filter",
+    "results": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e19",
+   "seq": 19,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-5",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 2,
+   "usage": null,
+   "payload": {
+    "purpose": "filter",
+    "questions": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "label": "Does section [S0] contain information that helps answer the question?",
+      "target": "p1 §17"
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "label": "Does section [S1] contain information that helps answer the question?",
+      "target": "p1 §18"
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "label": "Does section [S2] contain information that helps answer the question?",
+      "target": "p1 §19"
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "label": "Does section [S3] contain information that helps answer the question?",
+      "target": "p1 §20"
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "label": "Does section [S4] contain information that helps answer the question?",
+      "target": "p1 §21"
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "label": "Does section [S5] contain information that helps answer the question?",
+      "target": "p1 §22"
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "label": "Does section [S6] contain information that helps answer the question?",
+      "target": "p1 §23"
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "label": "Does section [S7] contain information that helps answer the question?",
+      "target": "p1 §24"
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "label": "Does section [S8] contain information that helps answer the question?",
+      "target": "p1 §25"
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "label": "Does section [S9] contain information that helps answer the question?",
+      "target": "p1 §26"
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "label": "Does section [S10] contain information that helps answer the question?",
+      "target": "p1 §27"
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "label": "Does section [S11] contain information that helps answer the question?",
+      "target": "p1 §28"
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "label": "Does section [S12] contain information that helps answer the question?",
+      "target": "p1 §29"
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "label": "Does section [S13] contain information that helps answer the question?",
+      "target": "p3 §0"
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "label": "Does section [S14] contain information that helps answer the question?",
+      "target": "p3 §1"
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "label": "Does section [S15] contain information that helps answer the question?",
+      "target": "p3 §2"
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "label": "Does section [S16] contain information that helps answer the question?",
+      "target": "p3 §3"
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "label": "Does section [S17] contain information that helps answer the question?",
+      "target": "p3 §4"
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "label": "Does section [S18] contain information that helps answer the question?",
+      "target": "p3 §5"
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "label": "Does section [S19] contain information that helps answer the question?",
+      "target": "p3 §6"
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "label": "Does section [S20] contain information that helps answer the question?",
+      "target": "p3 §7"
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "label": "Does section [S21] contain information that helps answer the question?",
+      "target": "p3 §8"
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "label": "Does section [S22] contain information that helps answer the question?",
+      "target": "p3 §9"
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "label": "Does section [S23] contain information that helps answer the question?",
+      "target": "p3 §10"
+     }
+    ],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e20",
+   "seq": 20,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-5",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 3,
+   "usage": {
+    "call_id": "call-50385fe6da7c",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "filter",
+    "results": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e21",
+   "seq": 21,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "evidence.filtered",
+   "actor": "policy",
+   "stage": "evidence_filter",
+   "state_version": "state-v1",
+   "evidence_set_id": "evidence-12-3c4e1ed5",
+   "elapsed_ms": 4,
+   "usage": null,
+   "payload": {
+    "round": 1,
+    "counts": {
+     "discovered": 91,
+     "submitted": 72,
+     "validly_evaluated": 72,
+     "kept": 12,
+     "review": 12,
+     "excluded": 48,
+     "not_assessed": 19
+    },
+    "items": [
+     {
+      "id": "src-15136fd066",
+      "title": "Search results · ev battery recycling rate 2026",
+      "source": "duckduckgo.com",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 527
+     },
+     {
+      "id": "src-63f4839f88",
+      "title": "p0 §0",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-e96d5ecbdd",
+      "title": "p0 §1",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-78ac08add6",
+      "title": "p0 §2",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-f0bb97404b",
+      "title": "p0 §3",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-52bf352e9f",
+      "title": "p0 §4",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-07db5a6b4a",
+      "title": "p0 §5",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-c50da3e7f0",
+      "title": "p0 §6",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-8b00189a05",
+      "title": "p0 §7",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-8ee399303d",
+      "title": "p0 §8",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-bb8ba457fa",
+      "title": "p0 §9",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-ceb195de26",
+      "title": "p0 §10",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-3f61861717",
+      "title": "p0 §11",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-bf496311ff",
+      "title": "p0 §12",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-b2a1eee714",
+      "title": "p0 §13",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-57e620a0a8",
+      "title": "p0 §14",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-53303194c9",
+      "title": "p0 §15",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-3de3b0dd0d",
+      "title": "p0 §16",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-2b79ed39fb",
+      "title": "p0 §17",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-e120410804",
+      "title": "p0 §18",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-6d61e2895f",
+      "title": "p0 §19",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-76d16481aa",
+      "title": "p0 §20",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-420e803f2b",
+      "title": "p0 §21",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-ba4a8e7d57",
+      "title": "p0 §22",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-47592685fc",
+      "title": "p0 §23",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-36bced1180",
+      "title": "p0 §24",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-429c1d773a",
+      "title": "p0 §25",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-a757449dab",
+      "title": "p0 §26",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-3c4292f499",
+      "title": "p0 §27",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-0901d6aeed",
+      "title": "p0 §28",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-d4f45060e8",
+      "title": "p0 §29",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-7b61e638be",
+      "title": "p1 §0",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-84b63d7650",
+      "title": "p1 §1",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-c195ffbef7",
+      "title": "p1 §2",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-f2ed8793e3",
+      "title": "p1 §3",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-7ed5af8093",
+      "title": "p1 §4",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-8a1774ab92",
+      "title": "p1 §5",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-44d740eb3a",
+      "title": "p1 §6",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-18b0dc7ac4",
+      "title": "p1 §7",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-7bbbf320a7",
+      "title": "p1 §8",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-0f123942e7",
+      "title": "p1 §9",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-5f917bc0ba",
+      "title": "p1 §10",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-e8cbe4b5e3",
+      "title": "p1 §11",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-7ee3b540fa",
+      "title": "p1 §12",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-c4833e0b5f",
+      "title": "p1 §13",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-70bce24400",
+      "title": "p1 §14",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-25582ecb62",
+      "title": "p1 §15",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-65d1f26a66",
+      "title": "p1 §16",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-76ce93fea6",
+      "title": "p1 §17",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-6ee5d02ec1",
+      "title": "p1 §18",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-0265679915",
+      "title": "p1 §19",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-290c8fe7d9",
+      "title": "p1 §20",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-351c440576",
+      "title": "p1 §21",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-ab29001478",
+      "title": "p1 §22",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-7164908e54",
+      "title": "p1 §23",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-4f1b65f4f3",
+      "title": "p1 §24",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-9c2b288ed1",
+      "title": "p1 §25",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-75b78ac776",
+      "title": "p1 §26",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-add9f137b8",
+      "title": "p1 §27",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-d354a0d0d5",
+      "title": "p1 §28",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-7d053b0cc1",
+      "title": "p1 §29",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-8bc85fdc69",
+      "title": "p3 §0",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-e43d846f51",
+      "title": "p3 §1",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-650403a811",
+      "title": "p3 §2",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-51bc32989f",
+      "title": "p3 §3",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-030635e26c",
+      "title": "p3 §4",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.2,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-df26b871ba",
+      "title": "p3 §5",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-0b4b2489a2",
+      "title": "p3 §6",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-ab63b91f11",
+      "title": "p3 §7",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.1,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-ed5b65accc",
+      "title": "p3 §8",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-5b65abdfd1",
+      "title": "p3 §9",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 1,
+      "chars": 1037
+     },
+     {
+      "id": "src-5df958dd35",
+      "title": "p3 §10",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-70afdf1da9",
+      "title": "p3 §11",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-8ab3a2f573",
+      "title": "p3 §12",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-f73d7f2bd7",
+      "title": "p3 §13",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-196ee21433",
+      "title": "p3 §14",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-3dbe735659",
+      "title": "p3 §15",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-ba1e3637a9",
+      "title": "p3 §16",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-5bf2b59f18",
+      "title": "p3 §17",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-272ee12e0c",
+      "title": "p3 §18",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-7b82ea83c3",
+      "title": "p3 §19",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-cadbb3a0d2",
+      "title": "p3 §20",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-cb62512878",
+      "title": "p3 §21",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-e9a56d0ed7",
+      "title": "p3 §22",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-c9df48f543",
+      "title": "p3 §23",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-e189e0f56d",
+      "title": "p3 §24",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-66f19608b2",
+      "title": "p3 §25",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-4233a77b24",
+      "title": "p3 §26",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-343c7555b2",
+      "title": "p3 §27",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-4c270f013e",
+      "title": "p3 §28",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     },
+     {
+      "id": "src-91de28e661",
+      "title": "p3 §29",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 1,
+      "chars": 1038
+     }
+    ],
+    "items_total": 91,
+    "review_policy": "evidence.review_not_delivered/v1",
+    "batches": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e22",
+   "seq": 22,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_check-6",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "evidence_check",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": null,
+   "payload": {
+    "purpose": "sufficiency",
+    "questions": [
+     {
+      "question_id": "__enough__",
+      "type": "noul",
+      "label": "Taken together, does this evidence contain enough to answer the question fully?",
+      "target": "evidence-12-3c4e1ed5"
+     }
+    ],
+    "count": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e23",
+   "seq": 23,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_check-6",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "evidence_check",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": {
+    "call_id": "call-bf49acac7a5a",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "sufficiency",
+    "results": [
+     {
+      "question_id": "__enough__",
+      "type": "noul",
+      "probability_yes": 0.41,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e24",
+   "seq": 24,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_check-6",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "evidence.checked",
+   "actor": "jev",
+   "stage": "evidence_check",
+   "state_version": "state-v1",
+   "evidence_set_id": "evidence-12-3c4e1ed5",
+   "elapsed_ms": 5,
+   "usage": null,
+   "payload": {
+    "round": 1,
+    "result": "insufficient",
+    "probability_yes": 0.41,
+    "threshold": 0.7,
+    "delivered": 12,
+    "delivered_chars": 12106,
+    "limit": 26000,
+    "scope": "research",
+    "checked_set_id": "evidence-12-3c4e1ed5",
+    "reason": ""
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e25",
+   "seq": 25,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.started",
+   "actor": "llm",
+   "stage": "research",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": null,
+   "payload": {
+    "purpose": "search_terms",
+    "model": "demo/free"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e26",
+   "seq": 26,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.completed",
+   "actor": "llm",
+   "stage": "research",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": {
+    "call_id": "call-778c081f55a5",
+    "cost_usd": 1e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "search_terms",
+    "model": "demo/free",
+    "input_tokens": 50,
+    "output_tokens": 8,
+    "chars": 40
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e27",
+   "seq": 27,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "stage.entered",
+   "actor": "tool",
+   "stage": "search",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": null,
+   "payload": {
+    "detail": "lithium recovery pilot plant results"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e28",
+   "seq": 28,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-source_triage-7",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "source_triage",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": null,
+   "payload": {
+    "purpose": "triage",
+    "questions": [
+     {
+      "question_id": "h0",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 2.0 on EV…",
+      "target": "Source 2.0 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h1",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 2.1 on EV…",
+      "target": "Source 2.1 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h2",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 2.2 on EV…",
+      "target": "Source 2.2 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h3",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 2.3 on EV…",
+      "target": "Source 2.3 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h4",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 2.4 on EV…",
+      "target": "Source 2.4 on EV battery recycling (example.org)"
+     },
+     {
+      "question_id": "h5",
+      "type": "noul",
+      "label": "Would opening this result give facts that answer the question — an article, listing, table or report, not a home page, search box or booking form that shows nothing until you use it? Source 2.5 on EV…",
+      "target": "Source 2.5 on EV battery recycling (example.org)"
+     }
+    ],
+    "count": 6
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e29",
+   "seq": 29,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-source_triage-7",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "source_triage",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": {
+    "call_id": "call-4066cad7f5a0",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "triage",
+    "results": [
+     {
+      "question_id": "h0",
+      "type": "noul",
+      "probability_yes": 0.91,
+      "confidence": null
+     },
+     {
+      "question_id": "h1",
+      "type": "noul",
+      "probability_yes": 0.84,
+      "confidence": null
+     },
+     {
+      "question_id": "h2",
+      "type": "noul",
+      "probability_yes": 0.35,
+      "confidence": null
+     },
+     {
+      "question_id": "h3",
+      "type": "noul",
+      "probability_yes": 0.72,
+      "confidence": null
+     },
+     {
+      "question_id": "h4",
+      "type": "noul",
+      "probability_yes": 0.2,
+      "confidence": null
+     },
+     {
+      "question_id": "h5",
+      "type": "noul",
+      "probability_yes": 0.66,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 6
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e30",
+   "seq": 30,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-source_triage-7",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "source_triage",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": null,
+   "payload": {
+    "rule": "triage.keep_above",
+    "rule_version": "v1",
+    "inputs": {
+     "threshold": 0.55,
+     "top_k": 3,
+     "results": 6
+    },
+    "action": "open 3 of 6"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e31",
+   "seq": 31,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "stage.entered",
+   "actor": "tool",
+   "stage": "fetch",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 5,
+   "usage": null,
+   "payload": {
+    "detail": "3 pages"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e32",
+   "seq": 32,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-8",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 6,
+   "usage": null,
+   "payload": {
+    "purpose": "filter",
+    "questions": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "label": "Does section [S0] contain information that helps answer the question?",
+      "target": "Search results · lithium recovery pilot plant results"
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "label": "Does section [S1] contain information that helps answer the question?",
+      "target": "p0 §0"
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "label": "Does section [S2] contain information that helps answer the question?",
+      "target": "p0 §1"
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "label": "Does section [S3] contain information that helps answer the question?",
+      "target": "p0 §2"
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "label": "Does section [S4] contain information that helps answer the question?",
+      "target": "p0 §3"
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "label": "Does section [S5] contain information that helps answer the question?",
+      "target": "p0 §4"
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "label": "Does section [S6] contain information that helps answer the question?",
+      "target": "p0 §5"
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "label": "Does section [S7] contain information that helps answer the question?",
+      "target": "p0 §6"
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "label": "Does section [S8] contain information that helps answer the question?",
+      "target": "p0 §7"
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "label": "Does section [S9] contain information that helps answer the question?",
+      "target": "p0 §8"
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "label": "Does section [S10] contain information that helps answer the question?",
+      "target": "p0 §9"
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "label": "Does section [S11] contain information that helps answer the question?",
+      "target": "p0 §10"
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "label": "Does section [S12] contain information that helps answer the question?",
+      "target": "p0 §11"
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "label": "Does section [S13] contain information that helps answer the question?",
+      "target": "p0 §12"
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "label": "Does section [S14] contain information that helps answer the question?",
+      "target": "p0 §13"
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "label": "Does section [S15] contain information that helps answer the question?",
+      "target": "p0 §14"
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "label": "Does section [S16] contain information that helps answer the question?",
+      "target": "p0 §15"
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "label": "Does section [S17] contain information that helps answer the question?",
+      "target": "p0 §16"
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "label": "Does section [S18] contain information that helps answer the question?",
+      "target": "p0 §17"
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "label": "Does section [S19] contain information that helps answer the question?",
+      "target": "p0 §18"
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "label": "Does section [S20] contain information that helps answer the question?",
+      "target": "p0 §19"
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "label": "Does section [S21] contain information that helps answer the question?",
+      "target": "p0 §20"
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "label": "Does section [S22] contain information that helps answer the question?",
+      "target": "p0 §21"
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "label": "Does section [S23] contain information that helps answer the question?",
+      "target": "p0 §22"
+     }
+    ],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e33",
+   "seq": 33,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-8",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 6,
+   "usage": {
+    "call_id": "call-94edfbf6c214",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "filter",
+    "results": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e34",
+   "seq": 34,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-9",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 6,
+   "usage": null,
+   "payload": {
+    "purpose": "filter",
+    "questions": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "label": "Does section [S0] contain information that helps answer the question?",
+      "target": "p0 §23"
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "label": "Does section [S1] contain information that helps answer the question?",
+      "target": "p0 §24"
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "label": "Does section [S2] contain information that helps answer the question?",
+      "target": "p0 §25"
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "label": "Does section [S3] contain information that helps answer the question?",
+      "target": "p0 §26"
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "label": "Does section [S4] contain information that helps answer the question?",
+      "target": "p0 §27"
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "label": "Does section [S5] contain information that helps answer the question?",
+      "target": "p0 §28"
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "label": "Does section [S6] contain information that helps answer the question?",
+      "target": "p0 §29"
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "label": "Does section [S7] contain information that helps answer the question?",
+      "target": "p1 §0"
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "label": "Does section [S8] contain information that helps answer the question?",
+      "target": "p1 §1"
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "label": "Does section [S9] contain information that helps answer the question?",
+      "target": "p1 §2"
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "label": "Does section [S10] contain information that helps answer the question?",
+      "target": "p1 §3"
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "label": "Does section [S11] contain information that helps answer the question?",
+      "target": "p1 §4"
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "label": "Does section [S12] contain information that helps answer the question?",
+      "target": "p1 §5"
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "label": "Does section [S13] contain information that helps answer the question?",
+      "target": "p1 §6"
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "label": "Does section [S14] contain information that helps answer the question?",
+      "target": "p1 §7"
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "label": "Does section [S15] contain information that helps answer the question?",
+      "target": "p1 §8"
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "label": "Does section [S16] contain information that helps answer the question?",
+      "target": "p1 §9"
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "label": "Does section [S17] contain information that helps answer the question?",
+      "target": "p1 §10"
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "label": "Does section [S18] contain information that helps answer the question?",
+      "target": "p1 §11"
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "label": "Does section [S19] contain information that helps answer the question?",
+      "target": "p1 §12"
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "label": "Does section [S20] contain information that helps answer the question?",
+      "target": "p1 §13"
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "label": "Does section [S21] contain information that helps answer the question?",
+      "target": "p1 §14"
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "label": "Does section [S22] contain information that helps answer the question?",
+      "target": "p1 §15"
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "label": "Does section [S23] contain information that helps answer the question?",
+      "target": "p1 §16"
+     }
+    ],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e35",
+   "seq": 35,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-9",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 7,
+   "usage": {
+    "call_id": "call-11f6d147cd6b",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "filter",
+    "results": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e36",
+   "seq": 36,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-10",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 7,
+   "usage": null,
+   "payload": {
+    "purpose": "filter",
+    "questions": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "label": "Does section [S0] contain information that helps answer the question?",
+      "target": "p1 §17"
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "label": "Does section [S1] contain information that helps answer the question?",
+      "target": "p1 §18"
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "label": "Does section [S2] contain information that helps answer the question?",
+      "target": "p1 §19"
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "label": "Does section [S3] contain information that helps answer the question?",
+      "target": "p1 §20"
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "label": "Does section [S4] contain information that helps answer the question?",
+      "target": "p1 §21"
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "label": "Does section [S5] contain information that helps answer the question?",
+      "target": "p1 §22"
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "label": "Does section [S6] contain information that helps answer the question?",
+      "target": "p1 §23"
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "label": "Does section [S7] contain information that helps answer the question?",
+      "target": "p1 §24"
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "label": "Does section [S8] contain information that helps answer the question?",
+      "target": "p1 §25"
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "label": "Does section [S9] contain information that helps answer the question?",
+      "target": "p1 §26"
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "label": "Does section [S10] contain information that helps answer the question?",
+      "target": "p1 §27"
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "label": "Does section [S11] contain information that helps answer the question?",
+      "target": "p1 §28"
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "label": "Does section [S12] contain information that helps answer the question?",
+      "target": "p1 §29"
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "label": "Does section [S13] contain information that helps answer the question?",
+      "target": "p3 §0"
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "label": "Does section [S14] contain information that helps answer the question?",
+      "target": "p3 §1"
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "label": "Does section [S15] contain information that helps answer the question?",
+      "target": "p3 §2"
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "label": "Does section [S16] contain information that helps answer the question?",
+      "target": "p3 §3"
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "label": "Does section [S17] contain information that helps answer the question?",
+      "target": "p3 §4"
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "label": "Does section [S18] contain information that helps answer the question?",
+      "target": "p3 §5"
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "label": "Does section [S19] contain information that helps answer the question?",
+      "target": "p3 §6"
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "label": "Does section [S20] contain information that helps answer the question?",
+      "target": "p3 §7"
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "label": "Does section [S21] contain information that helps answer the question?",
+      "target": "p3 §8"
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "label": "Does section [S22] contain information that helps answer the question?",
+      "target": "p3 §9"
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "label": "Does section [S23] contain information that helps answer the question?",
+      "target": "p3 §10"
+     }
+    ],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e37",
+   "seq": 37,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_filter-10",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "evidence_filter",
+   "state_version": "state-v1",
+   "evidence_set_id": null,
+   "elapsed_ms": 7,
+   "usage": {
+    "call_id": "call-5d67f5fdc3ef",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "filter",
+    "results": [
+     {
+      "question_id": "s0",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s1",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s2",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s3",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s4",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s5",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s6",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s7",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s8",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s9",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s10",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s11",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s12",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s13",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s14",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s15",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s16",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     },
+     {
+      "question_id": "s17",
+      "type": "noul",
+      "probability_yes": 0.81,
+      "confidence": null
+     },
+     {
+      "question_id": "s18",
+      "type": "noul",
+      "probability_yes": 0.05,
+      "confidence": null
+     },
+     {
+      "question_id": "s19",
+      "type": "noul",
+      "probability_yes": 0.63,
+      "confidence": null
+     },
+     {
+      "question_id": "s20",
+      "type": "noul",
+      "probability_yes": 0.3,
+      "confidence": null
+     },
+     {
+      "question_id": "s21",
+      "type": "noul",
+      "probability_yes": 0.92,
+      "confidence": null
+     },
+     {
+      "question_id": "s22",
+      "type": "noul",
+      "probability_yes": 0.12,
+      "confidence": null
+     },
+     {
+      "question_id": "s23",
+      "type": "noul",
+      "probability_yes": 0.47,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 24
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e38",
+   "seq": 38,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "evidence.filtered",
+   "actor": "policy",
+   "stage": "evidence_filter",
+   "state_version": "state-v2",
+   "evidence_set_id": "evidence-25-99257c4b",
+   "elapsed_ms": 8,
+   "usage": null,
+   "payload": {
+    "round": 2,
+    "counts": {
+     "discovered": 91,
+     "submitted": 72,
+     "validly_evaluated": 72,
+     "kept": 30,
+     "review": 12,
+     "excluded": 30,
+     "not_assessed": 19
+    },
+    "items": [
+     {
+      "id": "src-7bbe57dbc5",
+      "title": "Search results · lithium recovery pilot plant results",
+      "source": "duckduckgo.com",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 527
+     },
+     {
+      "id": "src-f62cf7b658",
+      "title": "p0 §0",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-6b6a121aa7",
+      "title": "p0 §1",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-49b7233fe4",
+      "title": "p0 §2",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-e4403bad10",
+      "title": "p0 §3",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-d1ea9ead13",
+      "title": "p0 §4",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-16e0f903c4",
+      "title": "p0 §5",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-02ffd42df8",
+      "title": "p0 §6",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-61381865f8",
+      "title": "p0 §7",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-8bb01af767",
+      "title": "p0 §8",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-957099f3c3",
+      "title": "p0 §9",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-5c251922c6",
+      "title": "p0 §10",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-d89d50ba76",
+      "title": "p0 §11",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-1cf0390b04",
+      "title": "p0 §12",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-beb56afa65",
+      "title": "p0 §13",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-dc0d725217",
+      "title": "p0 §14",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-2335758d68",
+      "title": "p0 §15",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-15e9b22f96",
+      "title": "p0 §16",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-01994045f9",
+      "title": "p0 §17",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-18b0650bae",
+      "title": "p0 §18",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-ea85048b4a",
+      "title": "p0 §19",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-3140fa7fed",
+      "title": "p0 §20",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-04ed5b2f81",
+      "title": "p0 §21",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-b761e07407",
+      "title": "p0 §22",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-4c6097a72c",
+      "title": "p0 §23",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-cabe6c301d",
+      "title": "p0 §24",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-d73ed7eb97",
+      "title": "p0 §25",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-4ed357fdf1",
+      "title": "p0 §26",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-8095abd24a",
+      "title": "p0 §27",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-90938f08ae",
+      "title": "p0 §28",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-8878da976f",
+      "title": "p0 §29",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-5b09c96698",
+      "title": "p1 §0",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-224c5e1f0b",
+      "title": "p1 §1",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-86c3ee74da",
+      "title": "p1 §2",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-80abd3136f",
+      "title": "p1 §3",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-2684d7e04f",
+      "title": "p1 §4",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-3b49e72acd",
+      "title": "p1 §5",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-9b7b1de77e",
+      "title": "p1 §6",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-45e6adbe8b",
+      "title": "p1 §7",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-7d1c8e2450",
+      "title": "p1 §8",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-a9faa9c8a3",
+      "title": "p1 §9",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-1686d7fd56",
+      "title": "p1 §10",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-afb410dff4",
+      "title": "p1 §11",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-99837f62d9",
+      "title": "p1 §12",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-7d7be55e29",
+      "title": "p1 §13",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-8b54ea76d2",
+      "title": "p1 §14",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-7cfb16b3df",
+      "title": "p1 §15",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-5e52398cba",
+      "title": "p1 §16",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-348521bac0",
+      "title": "p1 §17",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-dc0725a335",
+      "title": "p1 §18",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-817cde9c99",
+      "title": "p1 §19",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-8ffb25ee74",
+      "title": "p1 §20",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-e1c67ad694",
+      "title": "p1 §21",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-bc3766e115",
+      "title": "p1 §22",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-5ce7b6db26",
+      "title": "p1 §23",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-112622645f",
+      "title": "p1 §24",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-993c088195",
+      "title": "p1 §25",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-a244d64cfe",
+      "title": "p1 §26",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-1d14b31fa7",
+      "title": "p1 §27",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-ced6f7032b",
+      "title": "p1 §28",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-4a5855b1d1",
+      "title": "p1 §29",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-fe0bf45b99",
+      "title": "p3 §0",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-3df096e2ff",
+      "title": "p3 §1",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-471c1020f3",
+      "title": "p3 §2",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-d82c528381",
+      "title": "p3 §3",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-d39b477800",
+      "title": "p3 §4",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.81,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-9c16f1f04e",
+      "title": "p3 §5",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.05,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-145df8033b",
+      "title": "p3 §6",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.63,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-dd125ab04f",
+      "title": "p3 §7",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.3,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-62429416c8",
+      "title": "p3 §8",
+      "source": "example.org",
+      "status": "kept",
+      "probability_yes": 0.92,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-a6bb03252f",
+      "title": "p3 §9",
+      "source": "example.org",
+      "status": "excluded",
+      "probability_yes": 0.12,
+      "round": 2,
+      "chars": 1037
+     },
+     {
+      "id": "src-eb9beee861",
+      "title": "p3 §10",
+      "source": "example.org",
+      "status": "review",
+      "probability_yes": 0.47,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-0b46a9b8ed",
+      "title": "p3 §11",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-7e0d18b200",
+      "title": "p3 §12",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-cefa8ac561",
+      "title": "p3 §13",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-b9c80be0f2",
+      "title": "p3 §14",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-d1ef4e1b2f",
+      "title": "p3 §15",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-9178a85a5e",
+      "title": "p3 §16",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-2f183309f7",
+      "title": "p3 §17",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-1840ce9dd0",
+      "title": "p3 §18",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-eaebd6b744",
+      "title": "p3 §19",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-880e82a88b",
+      "title": "p3 §20",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-46fad51867",
+      "title": "p3 §21",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-21097d7f9b",
+      "title": "p3 §22",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-b32dfba73c",
+      "title": "p3 §23",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-244b735eff",
+      "title": "p3 §24",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-b7ee5dcd81",
+      "title": "p3 §25",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-052142b36d",
+      "title": "p3 §26",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-dd9d3230a4",
+      "title": "p3 §27",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-d9ab39d8e1",
+      "title": "p3 §28",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     },
+     {
+      "id": "src-50921a2c45",
+      "title": "p3 §29",
+      "source": "example.org",
+      "status": "not_assessed",
+      "probability_yes": null,
+      "round": 2,
+      "chars": 1038
+     }
+    ],
+    "items_total": 91,
+    "review_policy": "evidence.review_not_delivered/v1",
+    "batches": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e39",
+   "seq": 39,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_check-11",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "evidence_check",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 9,
+   "usage": null,
+   "payload": {
+    "purpose": "sufficiency",
+    "questions": [
+     {
+      "question_id": "__enough__",
+      "type": "noul",
+      "label": "Taken together, does this evidence contain enough to answer the question fully?",
+      "target": "evidence-25-99257c4b"
+     }
+    ],
+    "count": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e40",
+   "seq": 40,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_check-11",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "evidence_check",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 9,
+   "usage": {
+    "call_id": "call-44590f36b116",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "sufficiency",
+    "results": [
+     {
+      "question_id": "__enough__",
+      "type": "noul",
+      "probability_yes": 0.83,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e41",
+   "seq": 41,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-evidence_check-11",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "evidence.checked",
+   "actor": "jev",
+   "stage": "evidence_check",
+   "state_version": "state-v2",
+   "evidence_set_id": "evidence-25-99257c4b",
+   "elapsed_ms": 9,
+   "usage": null,
+   "payload": {
+    "round": 2,
+    "result": "sufficient",
+    "probability_yes": 0.83,
+    "threshold": 0.7,
+    "delivered": 25,
+    "delivered_chars": 25271,
+    "limit": 26000,
+    "scope": "research",
+    "checked_set_id": "evidence-25-99257c4b",
+    "reason": ""
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e42",
+   "seq": 42,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "evidence.stopped",
+   "actor": "policy",
+   "stage": "evidence_check",
+   "state_version": "state-v2",
+   "evidence_set_id": "evidence-25-99257c4b",
+   "elapsed_ms": 9,
+   "usage": null,
+   "payload": {
+    "stop_reason": "sufficient",
+    "rounds": 2,
+    "gaps": [],
+    "result": "sufficient"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e43",
+   "seq": 43,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-12",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "decisions",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 9,
+   "usage": null,
+   "payload": {
+    "purpose": "decide",
+    "questions": [
+     {
+      "question_id": "__capability__",
+      "type": "score",
+      "label": "How much capability does this step require? Judge the work itself, not its length, and say so honestly if the decisions already made are the entire answer. The step is: What is the latest EV battery …",
+      "target": "the model for this answer",
+      "levels": [
+       "Nothing to write: the answer is a decision, not prose. A label, a rating, a yes…",
+       "Mechanical: copy, reformat, extract fields or fill a fixed template. No judgeme…",
+       "Routine: ordinary drafting, translation, summarising, or small code changes aga…",
+       "Hard: multi-step reasoning, unfamiliar or tricky code, or weighing material tha…",
+       "Frontier: novel design, subtle proofs, or a high-stakes irreversible judgement …"
+      ]
+     }
+    ],
+    "count": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e44",
+   "seq": 44,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-12",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "decisions",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 9,
+   "usage": {
+    "call_id": "call-1f15eb40f643",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "decide",
+    "results": [
+     {
+      "question_id": "__capability__",
+      "type": "score",
+      "score": 2.3,
+      "probabilities": {
+       "0": 0.0,
+       "1": 0.0,
+       "2": 1.0,
+       "3": 0.0,
+       "4": 0.0
+      },
+      "confidence": 0.82,
+      "legend": {
+       "0": "level 0",
+       "1": "level 1",
+       "2": "level 2",
+       "3": "level 3",
+       "4": "level 4"
+      }
+     }
+    ],
+    "missing": [],
+    "count": 1
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e45",
+   "seq": 45,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-12",
+   "question_id": "__capability__",
+   "subtask_id": null,
+   "kind": "routing.assessed",
+   "actor": "jev",
+   "stage": "generation",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 9,
+   "usage": null,
+   "payload": {
+    "title": "the answer",
+    "raw_score": 2.3,
+    "levels": 5,
+    "confidence": 0.82,
+    "probabilities": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 1.0,
+     "3": 0.0,
+     "4": 0.0
+    }
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e46",
+   "seq": 46,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-12",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "routing.selected",
+   "actor": "policy",
+   "stage": "generation",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 9,
+   "usage": null,
+   "payload": {
+    "title": "the answer",
+    "required_capability": 2,
+    "raw_score": 2.3,
+    "adopted": 2,
+    "candidates": [
+     {
+      "model_id": "free",
+      "label": "Free (demo)",
+      "capability": 2,
+      "eligible": true,
+      "price": "free",
+      "cost_index": 0.0,
+      "selected": true
+     },
+     {
+      "model_id": "tiny",
+      "label": "Tiny (demo)",
+      "capability": 1,
+      "eligible": false,
+      "price": "priced",
+      "cost_index": 0.11,
+      "selected": false
+     },
+     {
+      "model_id": "mid",
+      "label": "Mid (demo)",
+      "capability": 3,
+      "eligible": true,
+      "price": "priced",
+      "cost_index": 0.42,
+      "selected": false
+     },
+     {
+      "model_id": "big",
+      "label": "Big (demo)",
+      "capability": 4,
+      "eligible": true,
+      "price": "priced",
+      "cost_index": 13.0,
+      "selected": false
+     }
+    ],
+    "selected": {
+     "model_id": "free",
+     "label": "Free (demo)",
+     "capability": 2
+    },
+    "basis": "configured price table, weighted 1:3 input:output",
+    "downgraded": false,
+    "rules": [
+     "capability.round_to_nearest/v1"
+    ]
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e47",
+   "seq": 47,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.started",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 10,
+   "usage": null,
+   "payload": {
+    "purpose": "generate",
+    "model": "demo/free"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e48",
+   "seq": 48,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.completed",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 10,
+   "usage": {
+    "call_id": "call-de9a80819d2e",
+    "cost_usd": 0.0004,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "generate",
+    "model": "demo/free",
+    "input_tokens": 200,
+    "output_tokens": 60,
+    "chars": 62
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e49",
+   "seq": 49,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "output.version",
+   "actor": "llm",
+   "stage": "generation",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 10,
+   "usage": null,
+   "payload": {
+    "target": "answer",
+    "version": 1,
+    "mode": "written",
+    "depends_on": [
+     "evidence-25-99257c4b"
+    ]
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-research-filter-e50",
+   "seq": 50,
+   "run_id": "fixture-research-filter",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "run.completed",
+   "actor": "policy",
+   "stage": "run",
+   "state_version": "state-v2",
+   "evidence_set_id": null,
+   "elapsed_ms": 10,
+   "usage": null,
+   "payload": {
+    "status": "completed",
+    "llm_calls": 3,
+    "jev_calls": 12,
+    "jev_questions": 162,
+    "tool_calls": 4,
+    "generation": "ran",
+    "needs_review": [],
+    "cost": {
+     "known_usd": 0.00066,
+     "unknown_calls": 0
+    }
+   }
+  }
+ ]
+}

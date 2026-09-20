@@ -1,0 +1,48 @@
+{
+ "synthetic": true,
+ "note": "Synthetic: produced offline by scripts/make_fixtures.py with scripted answers. Not a measurement of Jev or of any model.",
+ "fixtures": [
+  {
+   "name": "feedback-zh",
+   "file": "feedback-zh.json",
+   "title": "Chinese feedback classification · 中文客户反馈分类",
+   "description": "One batch, 14 questions: a category per item and a separate urgency flag. No model writes anything.",
+   "events": 8
+  },
+  {
+   "name": "research-filter",
+   "file": "research-filter.json",
+   "title": "Research: sources filtered · 研究材料筛选",
+   "description": "Sections judged in budget-sized batches; the rest stay Not assessed. Sufficiency is checked on what the writer receives, and a second round is run when the first is not enough.",
+   "events": 50
+  },
+  {
+   "name": "multi-route",
+   "file": "multi-route.json",
+   "title": "Several steps, one routing call · 多子任务分流",
+   "description": "Jev rates every step in one batch; the policy rounds, raises on low confidence and picks the cheapest eligible model. A step already written in the material is skipped.",
+   "events": 28
+  },
+  {
+   "name": "decide-no-generate",
+   "file": "decide-no-generate.json",
+   "title": "Decided without writing · 判断后不生成",
+   "description": "The plan was written by a model, then Jev's answers were the whole deliverable: no generation call for this step — but not zero LLM calls for the run.",
+   "events": 14
+  },
+  {
+   "name": "needs-review",
+   "file": "needs-review.json",
+   "title": "Needs review · 存疑与无合格模型",
+   "description": "Two answers sit in the uncertain band, and the memo needs level 4 while the best configured model is level 3: the step waits for the user instead of running on a weaker model.",
+   "events": 17
+  },
+  {
+   "name": "jev-failed",
+   "file": "jev-failed.json",
+   "title": "Failure branch: Jev request failed · 失败分支",
+   "description": "The decisions batch fails. It is shown as a failed request with its reason — never as a No — and the run ends needing review.",
+   "events": 17
+  }
+ ]
+}

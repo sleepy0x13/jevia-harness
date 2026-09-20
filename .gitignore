@@ -1,0 +1,22 @@
+# Keys, and anything that could hold one
+.env
+.env.local
+*.key
+
+# The user's own work: conversations, outputs, plans, memory, run records.
+# A workspace is somebody's folder, not part of the program.
+workspace/
+.jevia/
+
+# Local editor and tooling state
+.claude/
+.baseline/
+
+# Python
+__pycache__/
+*.pyc
+.cache/
+
+# Noise
+*.log
+.DS_Store

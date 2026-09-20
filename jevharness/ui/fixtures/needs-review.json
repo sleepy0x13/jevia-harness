@@ -1,0 +1,646 @@
+{
+ "name": "needs-review",
+ "title": "Needs review · 存疑与无合格模型",
+ "description": "Two answers sit in the uncertain band, and the memo needs level 4 while the best configured model is level 3: the step waits for the user instead of running on a weaker model.",
+ "synthetic": true,
+ "note": "Synthetic: produced offline by scripts/make_fixtures.py with scripted answers. Not a measurement of Jev or of any model.",
+ "events": [
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e1",
+   "seq": 1,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "run.started",
+   "actor": "policy",
+   "stage": "run",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "ui_language": "en",
+    "app_mode": "auto",
+    "operation": "initial",
+    "rules_version": "policy-2026-09-20"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e2",
+   "seq": 2,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "assess",
+    "questions": [
+     {
+      "question_id": "__needs_research__",
+      "type": "noul",
+      "label": "Answering this well needs facts that are not in the material above — current events, prices, documentation, specifics about the world. Answer no if the material is enough, or if the task is pure comp…",
+      "target": "the task"
+     },
+     {
+      "question_id": "__multi_step__",
+      "type": "noul",
+      "label": "Doing this well takes several distinct stages or parts — for example gathering material, then analysing it, then writing it up, or a piece with separate sections that each need their own work — rathe…",
+      "target": "the task"
+     },
+     {
+      "question_id": "__wants_app__",
+      "type": "noul",
+      "label": "The user wants something to use or play on screen — an app, game, tool, form, calculator, timer, dashboard, tracker or web page — rather than an answer or a document to read. Answer no for questions,…",
+      "target": "the task"
+     }
+    ],
+    "count": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e3",
+   "seq": 3,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-4a3a3bb499a3",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "assess",
+    "results": [
+     {
+      "question_id": "__needs_research__",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     },
+     {
+      "question_id": "__multi_step__",
+      "type": "noul",
+      "probability_yes": 0.7,
+      "confidence": null
+     },
+     {
+      "question_id": "__wants_app__",
+      "type": "noul",
+      "probability_yes": 0.1,
+      "confidence": null
+     }
+    ],
+    "missing": [],
+    "count": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e4",
+   "seq": 4,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__needs_research__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.research_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.1,
+     "threshold": 0.5
+    },
+    "action": "use the material given"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e5",
+   "seq": 5,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__multi_step__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.multi_step_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.7,
+     "threshold": 0.5
+    },
+    "action": "compile a plan with steps"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e6",
+   "seq": 6,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-assess-1",
+   "question_id": "__wants_app__",
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "policy",
+   "stage": "assess",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "rule": "assess.app_at_or_above/v1",
+    "rule_version": "policy-2026-09-20",
+    "inputs": {
+     "probability_yes": 0.1,
+     "threshold": 0.6
+    },
+    "action": "answer in text"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e7",
+   "seq": 7,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.started",
+   "actor": "llm",
+   "stage": "plan",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "compile",
+    "model": "demo/mid"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e8",
+   "seq": 8,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "llm.completed",
+   "actor": "llm",
+   "stage": "plan",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-0ba778b301d3",
+    "cost_usd": 0.0004,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "compile",
+    "model": "demo/mid",
+    "input_tokens": 200,
+    "output_tokens": 60,
+    "chars": 408
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e9",
+   "seq": 9,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "policy.applied",
+   "actor": "llm",
+   "stage": "plan",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-0ba778b301d3",
+    "cost_usd": 0.0004,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "rule": "plan.compiled",
+    "rule_version": "v1",
+    "inputs": {
+     "source": "compiled",
+     "cache_key_version": "plans/v2",
+     "steps": 0,
+     "decisions": 2
+    },
+    "action": "assess the contract"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e10",
+   "seq": 10,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-2",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.started",
+   "actor": "jev",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "purpose": "decide",
+    "questions": [
+     {
+      "question_id": "has_auto_renewal",
+      "type": "noul",
+      "label": "Does the contract renew automatically?",
+      "target": "has auto renewal"
+     },
+     {
+      "question_id": "jurisdiction",
+      "type": "choice",
+      "label": "Which law governs it?",
+      "target": "jurisdiction",
+      "options": {
+       "uk": "England and Wales",
+       "de": "Germany",
+       "us_ny": "New York"
+      }
+     },
+     {
+      "question_id": "__capability__",
+      "type": "score",
+      "label": "How much capability does this step require? Judge the work itself, not its length, and say so honestly if the decisions already made are the entire answer. The step is: Write a risk memo.",
+      "target": "the model for this answer",
+      "levels": [
+       "Nothing to write: the answer is a decision, not prose. A label, a rating, a yes…",
+       "Mechanical: copy, reformat, extract fields or fill a fixed template. No judgeme…",
+       "Routine: ordinary drafting, translation, summarising, or small code changes aga…",
+       "Hard: multi-step reasoning, unfamiliar or tricky code, or weighing material tha…",
+       "Frontier: novel design, subtle proofs, or a high-stakes irreversible judgement …"
+      ]
+     }
+    ],
+    "count": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e11",
+   "seq": 11,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-2",
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "batch.completed",
+   "actor": "jev",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": {
+    "call_id": "call-983c48755371",
+    "cost_usd": 2e-05,
+    "cost_source": "provider_reported",
+    "price_table": ""
+   },
+   "payload": {
+    "purpose": "decide",
+    "results": [
+     {
+      "question_id": "has_auto_renewal",
+      "type": "noul",
+      "probability_yes": 0.52,
+      "confidence": null
+     },
+     {
+      "question_id": "jurisdiction",
+      "type": "choice",
+      "choice": "uk",
+      "probabilities": {
+       "uk": 0.46,
+       "de": 0.31,
+       "us_ny": 0.23
+      },
+      "confidence": 0.21
+     },
+     {
+      "question_id": "__capability__",
+      "type": "score",
+      "score": 3.7,
+      "probabilities": {
+       "0": 0.0,
+       "1": 0.0,
+       "2": 0.0,
+       "3": 0.0,
+       "4": 1.0
+      },
+      "confidence": 0.86,
+      "legend": {
+       "0": "level 0",
+       "1": "level 1",
+       "2": "level 2",
+       "3": "level 3",
+       "4": "level 4"
+      }
+     }
+    ],
+    "missing": [],
+    "count": 3
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e12",
+   "seq": 12,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-2",
+   "question_id": "has_auto_renewal",
+   "subtask_id": null,
+   "kind": "policy.review_required",
+   "actor": "policy",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "reason": "low_confidence",
+    "blocking": false,
+    "distribution": {
+     "value": true,
+     "probability": 0.52
+    },
+    "threshold": {
+     "rule": "noul.uncertain_band/v1",
+     "low": 0.35,
+     "high": 0.65,
+     "measure": "P(yes)"
+    },
+    "options": []
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e13",
+   "seq": 13,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-2",
+   "question_id": "jurisdiction",
+   "subtask_id": null,
+   "kind": "policy.review_required",
+   "actor": "policy",
+   "stage": "decisions",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "reason": "low_confidence",
+    "blocking": false,
+    "distribution": {
+     "value": "uk",
+     "probabilities": {
+      "uk": 0.46,
+      "de": 0.31,
+      "us_ny": 0.23
+     },
+     "confidence": 0.21
+    },
+    "threshold": {
+     "rule": "confidence.abstain_below/v1",
+     "below": 0.55,
+     "measure": "confidence"
+    },
+    "options": []
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e14",
+   "seq": 14,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": "batch-decisions-2",
+   "question_id": "__capability__",
+   "subtask_id": null,
+   "kind": "routing.assessed",
+   "actor": "jev",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "title": "the answer",
+    "raw_score": 3.7,
+    "levels": 5,
+    "confidence": 0.86,
+    "probabilities": {
+     "0": 0.0,
+     "1": 0.0,
+     "2": 0.0,
+     "3": 0.0,
+     "4": 1.0
+    }
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e15",
+   "seq": 15,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "routing.unavailable",
+   "actor": "policy",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "title": "the answer",
+    "required_capability": 4,
+    "best_available": 3,
+    "candidates": [
+     {
+      "model_id": "free",
+      "label": "Free (demo)",
+      "capability": 2,
+      "eligible": false,
+      "price": "free",
+      "cost_index": 0.0,
+      "selected": false
+     },
+     {
+      "model_id": "tiny",
+      "label": "Tiny (demo)",
+      "capability": 1,
+      "eligible": false,
+      "price": "priced",
+      "cost_index": 0.11,
+      "selected": false
+     },
+     {
+      "model_id": "mid",
+      "label": "Mid (demo)",
+      "capability": 3,
+      "eligible": false,
+      "price": "priced",
+      "cost_index": 0.42,
+      "selected": false
+     }
+    ],
+    "options": [
+     "add_model",
+     "allow_downgrade"
+    ],
+    "reason": "no configured model reaches the required level"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e16",
+   "seq": 16,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "policy.review_required",
+   "actor": "policy",
+   "stage": "generation",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "reason": "no_qualified_model",
+    "blocking": true,
+    "options": [
+     "add_model",
+     "allow_downgrade"
+    ],
+    "detail": "needs level 4; best available is level 3"
+   }
+  },
+  {
+   "type": "decision_event",
+   "event_version": 1,
+   "event_id": "fixture-needs-review-e17",
+   "seq": 17,
+   "run_id": "fixture-needs-review",
+   "operation_id": "initial",
+   "attempt_id": "attempt-1",
+   "batch_id": null,
+   "question_id": null,
+   "subtask_id": null,
+   "kind": "run.completed",
+   "actor": "policy",
+   "stage": "run",
+   "state_version": "state-v0",
+   "evidence_set_id": null,
+   "elapsed_ms": 0,
+   "usage": null,
+   "payload": {
+    "status": "needs_review",
+    "llm_calls": 1,
+    "jev_calls": 2,
+    "jev_questions": 6,
+    "tool_calls": 0,
+    "generation": "blocked",
+    "needs_review": [
+     "no_qualified_model"
+    ],
+    "cost": {
+     "known_usd": 0.00044,
+     "unknown_calls": 0
+    }
+   }
+  }
+ ]
+}

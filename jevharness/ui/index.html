@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JEVia</title>
+<link rel="stylesheet" href="/ui/css/app.css">
+</head>
+<body>
+<div class="shell" id="shell">
+
+  <aside class="side" id="side">
+    <div class="grip" id="grip-side"></div>
+    <div class="brand"><span class="mark">JEVia</span><span class="ver"><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 3v94M3 50h94M16.8 16.8l66.4 66.4M83.2 16.8L16.8 83.2" fill="none" stroke="currentColor" stroke-width="4"/></svg></span></div>
+    <button class="side-new" id="btn-new"><span>+</span><span data-t="newChat"></span><kbd>⌘K</kbd></button>
+    <div class="side-tools">
+      <button id="btn-folder" data-t="newFolder"></button>
+      <button id="btn-archived" data-t="archived"></button>
+    </div>
+    <div class="threads" id="threads"></div>
+    <div class="side-foot">
+      <button class="ws" id="btn-workspace"><span class="sq" id="ws-dot"></span><span class="p" id="ws-label"></span></button>
+      <div class="side-row">
+        <button class="settings" id="btn-settings" data-t="settings"></button>
+        <div class="seg" id="lang"><button data-lang="en">EN</button><button data-lang="zh">中</button></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="topbar"><button class="cvtoggle" id="btn-canvas" hidden><span data-t="outputs"></span><b class="num" id="canvas-count"></b></button></div>
+    <div class="stream" id="stream"></div>
+    <div class="sr-only" id="live-status" aria-live="polite" aria-atomic="true"></div>
+    <button class="latest" id="btn-latest" hidden><span>↓</span><span data-t="latest"></span></button>
+    <div class="composer">
+      <div class="err" id="err" hidden></div>
+      <div class="cwrap">
+        <div class="menu slash" id="slash" hidden></div>
+        <div class="chips" id="chips"></div>
+        <div class="box" id="box">
+          <textarea id="prompt" rows="1" spellcheck="false"></textarea>
+          <div class="tools">
+            <button class="icon burger" id="btn-burger" aria-label="Menu">≡</button>
+            <button class="icon" id="btn-plus" aria-label="Attach">＋</button>
+            <button class="pill" id="btn-skill"><span class="slashk">/</span><span id="skill-label"></span></button>
+            <button class="pill" id="btn-app"><span class="glyph"></span><span id="app-label"></span></button>
+            <span class="sp"></span>
+            <button class="stop" id="btn-stop" hidden aria-label="Stop">■</button>
+            <button class="send" id="btn-send" aria-label="Send">↑</button>
+          </div>
+        </div>
+        <div class="foot"><span data-t="sendHint"></span><span class="hint" id="hint"></span></div>
+      </div>
+      <input type="file" id="file" hidden multiple>
+    </div>
+  </main>
+
+  <aside class="canvas" id="canvas" aria-label="Side panel">
+    <div class="grip" id="grip-canvas"></div>
+    <div class="canvas-top">
+      <button class="btn ghost sm" id="cv-back" hidden>←</button>
+      <span class="h2" id="cv-title"></span>
+      <span id="cv-tools" hidden style="display:flex;gap:6px;align-items:center">
+        <span class="seg" id="cv-device"><button data-device="desktop">▭</button><button data-device="mobile">▯</button></span>
+        <button class="btn ghost sm" id="cv-download" data-t="download"></button>
+      </span>
+      <button class="btn ghost sm" id="cv-close" aria-label="Close">×</button>
+    </div>
+    <div class="canvas-view" id="cv-body"></div>
+  </aside>
+</div>
+
+<div class="menu" id="popmenu" hidden></div>
+<div class="scrim" id="scrim"></div>
+<div class="askscrim" id="askscrim"></div>
+<div class="ask" id="ask">
+  <div class="h2" id="ask-title" style="margin-bottom:14px"></div>
+  <input class="input" id="ask-input" autocomplete="off">
+  <div class="row"><button class="btn ghost" id="ask-cancel" data-t="cancel"></button><button class="btn fill" id="ask-ok"></button></div>
+</div>
+<div class="toast" id="toast"><span class="k"></span><span id="toast-text"></span></div>
+
+<!-- first run -->
+<div class="sheet" id="onboard">
+  <div class="sheet-head"><div class="h1" data-t="welcome"></div><p data-t="welcomeKey"></p></div>
+  <div class="sheet-body">
+    <input class="input" id="ob-key" type="password" placeholder="sk-or-v1-…" autocomplete="off">
+    <p class="note" style="margin:10px 0 0"><a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer"><span data-t="welcomeGet"></span> ↗</a>
+      &nbsp;·&nbsp; <a href="#" id="ob-other" data-t="otherVendors"></a></p>
+  </div>
+  <div class="sheet-foot"><button class="btn fill" id="ob-start" data-t="start"></button><span class="sp"></span><button class="btn ghost" id="ob-later" data-t="later"></button></div>
+</div>
+
+<!-- workspace -->
+<div class="sheet wide" id="wssheet">
+  <div class="sheet-head"><div class="h1" data-t="wsTitle"></div><p data-t="wsNote"></p></div>
+  <div class="sheet-body">
+    <div class="crumbs" id="ws-crumbs"></div>
+    <div class="mkbar" id="mkbar" hidden>
+      <span class="lbl" data-t="newHereName"></span>
+      <input class="input" id="ws-name" spellcheck="false" autocomplete="off">
+      <button class="btn blue sm" id="ws-make-ok" data-t="create"></button>
+      <button class="btn ghost sm" id="ws-make-no" data-t="cancel"></button>
+    </div>
+    <div class="folders" id="ws-list"></div>
+    <div class="wsnote" id="ws-note"></div>
+  </div>
+  <div class="sheet-foot">
+    <button class="btn fill" id="ws-use" data-t="use"></button>
+    <button class="btn" id="ws-new" data-t="newHere"></button>
+    <span class="sp"></span>
+    <button class="btn ghost" id="ws-typed" data-t="typePath"></button>
+    <button class="btn ghost" id="ws-close" data-t="close"></button>
+  </div>
+</div>
+
+<!-- settings -->
+<div class="prefs" id="prefs">
+  <nav><div class="h1" id="prefs-title"></div><div id="prefs-nav"></div><span class="sp"></span>
+    <button class="close" id="prefs-close"></button></nav>
+  <main>
+    <div class="pane-head"><div class="t"><div class="h1" id="pane-title"></div><p id="pane-note"></p></div><div id="pane-action"></div></div>
+    <div class="pane-body" id="pane-body"></div>
+  </main>
+</div>
+
+<script type="module" src="/ui/js/main.js"></script>
+</body>
+</html>
