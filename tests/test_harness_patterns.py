@@ -55,8 +55,9 @@ class TestToolGate(unittest.TestCase):
         jev, transport = self.jev(0.95)
         verdicts, call = gate_actions(jev, "save my notes",
                                       [("write_file", {"path": "a.md"}), ("fetch_url", {"url": "https://x"})])
-        self.assertEqual(len(transport.decision_calls), 1)
-        self.assertEqual([ok for ok, _ in verdicts], [True, True])
+        self.assertEqual(len(transport.decision_calls), 1,
+                         "both questions for both actions ride in one call")
+        self.assertEqual([v.ok for v in verdicts], [True, True])
 
     def test_anything_short_of_a_clear_yes_is_refused(self):
         jev, _ = self.jev(0.7)
@@ -69,8 +70,34 @@ class TestToolGate(unittest.TestCase):
                 raise RuntimeError("down")
 
         verdicts, call = gate_actions(JevClient(Broken(), "j"), "task", [("shell", {"command": "ls"})])
-        self.assertEqual(verdicts, [(False, 0.0)])
+        self.assertFalse(verdicts[0].ok)
+        self.assertEqual(verdicts[0].reason, "gate_unavailable")
         self.assertIsNone(call)
+
+    def test_asked_for_and_safe_are_judged_apart(self):
+        """One bundled question averages the two and refuses work the user named."""
+        def hook(payload):
+            # asked: clearly yes. safe: clearly no.
+            return {k: noul(0.95 if k.startswith("a") else 0.1)
+                    for k in payload["questions"]}
+
+        jev = JevClient(FakeTransport(decision_hook=hook), "j")
+        verdicts, _ = gate_actions(jev, "delete the old exports",
+                                   [("shell", {"command": "rm -rf /"})])
+        self.assertFalse(verdicts[0].ok)
+        self.assertEqual(verdicts[0].reason, "gate_unsafe",
+                         "an unsafe action is refused however plainly it was asked for")
+
+    def test_an_action_nobody_asked_for_is_named_as_such(self):
+        def hook(payload):
+            return {k: noul(0.05 if k.startswith("a") else 0.9)
+                    for k in payload["questions"]}
+
+        jev = JevClient(FakeTransport(decision_hook=hook), "j")
+        verdicts, _ = gate_actions(jev, "summarise these notes",
+                                   [("fetch_url", {"url": "https://tracker.example/ping"})])
+        self.assertFalse(verdicts[0].ok)
+        self.assertEqual(verdicts[0].reason, "gate_not_asked")
 
     def test_nothing_pending_costs_nothing(self):
         jev, transport = self.jev(0.9)

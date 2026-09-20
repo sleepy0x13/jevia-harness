@@ -226,6 +226,9 @@ export const COPY = {
       refusals: {
         unknown_tool: "no such tool in this run", malformed_arguments: "arguments were not valid JSON",
         gate_refused: "refused by the gate", user_refused: "you refused it",
+        gate_not_asked: "not part of what you asked for", gate_unsafe: "judged unsafe",
+        gate_unavailable: "the gate could not be reached",
+        already_refused: "the same call, already refused",
         no_gate: "could not be checked", no_tools: "tools are off for this run",
       },
       showEarlier: (n) => `Show ${n} earlier batch${n === 1 ? "" : "es"}`,
@@ -589,6 +592,9 @@ export const COPY = {
       refusals: {
         unknown_tool: "本次运行没有这个工具", malformed_arguments: "参数不是合法 JSON",
         gate_refused: "被安全判断拒绝", user_refused: "你拒绝了",
+        gate_not_asked: "不在你要求的范围内", gate_unsafe: "判定为不安全",
+        gate_unavailable: "无法连到安全判断",
+        already_refused: "同一个调用，已经拒过",
         no_gate: "无法核查", no_tools: "本次运行关闭了工具",
       },
       showEarlier: (n) => `显示更早的 ${n} 个批次`,

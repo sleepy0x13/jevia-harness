@@ -25,8 +25,8 @@ from dataclasses import dataclass, field, replace
 from typing import Any, Callable, Dict, Iterator, List, Mapping, Optional, Sequence, Tuple
 
 from . import roles
-from .agent import (GATE_ALLOW, MAX_STATE_CHARS, Evidence, Researcher, Routing, Subtask, assess,
-                    gate_actions, route)
+from .agent import (GATE_ALLOW, MAX_STATE_CHARS, Evidence, Researcher, Routing, Subtask,
+                    Verdict, assess, gate_actions, route)
 from .config import Thresholds
 from .errors import ConfigError, HarnessError, ProviderError
 from .ledger import Comparison, Ledger, compare
@@ -348,6 +348,7 @@ class Executor:
                 None if skill is not None else self.library,
                 self.memory,
                 ask_app=self.app_mode == "auto",
+                reachable=self._reachable(),
                 observer=observer,
             )
             needs_research, picked, assess_call = (assessment.needs_research, assessment.skill,
@@ -1405,6 +1406,30 @@ class Executor:
 
     # -- the agent loop ------------------------------------------------------ #
 
+    def _reachable(self) -> str:
+        """What this run can open without the web, named so Jev can weigh it.
+
+        Only the top of the workspace, and only names. It is enough for the
+        research question to tell "read the files I gave you" apart from "go
+        and find out", and it costs a directory listing.
+        """
+        tools = self._loop_tools()
+        if tools is None:
+            return ""
+        root = getattr(tools.context, "workspace", None)
+        if root is None:
+            return ""
+        try:
+            names = sorted(entry.name for entry in root.iterdir()
+                           if not entry.name.startswith("."))
+        except OSError:
+            return ""
+        if not names:
+            return ""
+        listing = ", ".join(names[:40]) + (", …" if len(names) > 40 else "")
+        return (f"The workspace, which this run can list and read with its own tools: "
+                f"{listing}")
+
     def _loop_tools(self):
         """The tools any step of this run may call, or None when it may call none.
 
@@ -1926,7 +1951,7 @@ class Executor:
         verdicts, call = gate_actions(self.jev, task.prompt, risky, observer=observer)
         if call:
             result.ledger.add(call)
-            allowed = sum(1 for ok, _ in verdicts if ok)
+            allowed = sum(1 for verdict in verdicts if verdict.ok)
             result.steps.append(
                 Step("gate", f"{allowed}/{len(risky)} actions allowed", engine="jev",
                      cost=call.usage.cost, latency_ms=call.latency_ms, code="tool_gate",
@@ -1938,7 +1963,8 @@ class Executor:
         risky_index = 0
         for tool, args in planned:
             if tool.side_effects:
-                ok, probability = verdict_for.get(risky_index, (False, 0.0))
+                verdict = verdict_for.get(risky_index) or Verdict.refused()
+                ok, probability = verdict.ok, verdict.probability
                 risky_index += 1
                 # Jev's yes is necessary, never sufficient: the tool's own hard
                 # rules (workspace confinement, no private hosts) still apply

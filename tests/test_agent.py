@@ -215,6 +215,30 @@ class TestAssess(unittest.TestCase):
                          {"__needs_research__", "__multi_step__", "__wants_app__"})
         self.assertIsNotNone(call)
 
+    def test_what_the_run_can_open_itself_is_named_in_the_state(self):
+        """Otherwise a task pointing at workspace files reads as missing its facts."""
+        seen = {}
+
+        def hook(payload):
+            seen["state"] = payload["state"]
+            return {k: noul(0.05) for k in payload["questions"]}
+
+        transport = FakeTransport(decision_hook=hook)
+        assess(JevClient(transport, "j"), "read the files and summarise them", "",
+               reachable="The workspace ...: notes.md, data.csv")
+        self.assertIn("REACHABLE WITHOUT THE WEB", seen["state"])
+        self.assertIn("notes.md", seen["state"])
+
+    def test_nothing_reachable_leaves_the_state_alone(self):
+        seen = {}
+
+        def hook(payload):
+            seen["state"] = payload["state"]
+            return {k: noul(0.9) for k in payload["questions"]}
+
+        assess(JevClient(FakeTransport(decision_hook=hook), "j"), "what is the price today?", "")
+        self.assertNotIn("REACHABLE WITHOUT THE WEB", seen["state"])
+
     def test_material_that_suffices_says_no(self):
         transport = FakeTransport(decision_hook=lambda p: {k: noul(0.05) for k in p["questions"]})
         needs, *_ = assess(JevClient(transport, "j"), "summarise this", "a long email")

@@ -117,8 +117,37 @@ class TestTheLoop(unittest.TestCase):
         out = turn(transport, registry(root, "write_file"), gate=gate)
         self.assertFalse(out["tools"][0]["allowed"])
         self.assertFalse((root / "x.md").exists(), "a refused call does not run")
-        self.assertIn("refused", out["log"].messages()[-2]["content"])
+        told = out["log"].messages()[-2]["content"]
+        self.assertIn("did not run", told)
+        self.assertIn("p=0.20", told, "the model is told how the gate scored it")
         self.assertEqual(out["outcome"].text, "I will not write that file.")
+
+    def test_the_same_refused_call_is_not_judged_twice(self):
+        """Paying Jev to repeat itself teaches the model nothing."""
+        root = workspace()
+        judged = []
+
+        def judge(actions):
+            judged.append(list(actions))
+            return [(False, 0.2) for _ in actions], None
+
+        call = ("write_file", {"path": "x.md", "content": "no"})
+        transport = scripted([call], [call], [call], [call], "Gave up on the file.")
+        out = turn(transport, registry(root, "write_file"),
+                   gate=Gate(registry(root, "write_file"), judge=judge))
+        self.assertEqual(len(judged), 1, "the gate is asked once, not once per repeat")
+        told = " ".join(m.get("content") or "" for m in out["log"].messages())
+        self.assertIn("refused earlier in this turn", told)
+
+    def test_a_turn_that_only_repeats_itself_stops(self):
+        root = workspace()
+        call = ("write_file", {"path": "x.md", "content": "no"})
+        transport = scripted(*[[call]] * 8)
+        out = turn(transport, registry(root, "write_file"),
+                   gate=Gate(registry(root, "write_file"),
+                             judge=lambda a: ([(False, 0.2) for _ in a], None)))
+        self.assertEqual(out["outcome"].stop_reason, "repeating")
+        self.assertLess(len(transport.requests), 8, "it stops before the step budget")
 
     def test_an_unknown_tool_is_an_answerable_mistake_not_a_crash(self):
         root = workspace()

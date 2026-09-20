@@ -212,7 +212,7 @@ python3 scripts/offline_server.py # http://127.0.0.1:8766，全假引擎，不�
 第一次打开填入 API 密钥、选一个工作区就能用。
 
 ```bash
-python3 -m unittest discover -s tests -t .   # 429 项，离线，不需要密钥
+python3 -m unittest discover -s tests -t .   # 435 项，离线，不需要密钥
 node scripts/ui_tests.mjs                     # 24 项，事件 reducer、动效、渲染
 node scripts/copy_audit.mjs                   # 中英文案对齐
 ```

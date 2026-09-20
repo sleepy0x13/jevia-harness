@@ -32,6 +32,7 @@ from .session import ASSISTANT, TOOL, Log
 MAX_STEPS = 12
 MAX_TOOL_CALLS = 40
 MAX_RESULT_CHARS = 20_000
+REPEAT_LIMIT = 3          # the same refused call, sent again, is not going to work
 
 
 @dataclass
@@ -101,9 +102,13 @@ class Gate:
         judged = None
         if risky and self.judge is not None:
             results, judged = self.judge([(c.name, c.arguments) for c in risky])
-            for call, (ok, probability) in zip(risky, results):
-                verdicts[call.id] = {"ok": bool(ok), "probability": probability,
-                                     "reason": "gate" if ok else "gate_refused"}
+            for call, verdict in zip(risky, results):
+                # A judge answers (ok, probability) and may add its own reason.
+                ok, probability = bool(verdict[0]), verdict[1]
+                reason = verdict[2] if len(verdict) > 2 else (
+                    "gate" if ok else "gate_refused")
+                verdicts[call.id] = {"ok": ok, "probability": probability,
+                                     "reason": reason}
         elif risky:
             for call in risky:
                 verdicts[call.id] = {"ok": False, "reason": "no_gate"}
@@ -145,6 +150,7 @@ class AgentLoop:
         self.temperature = temperature
         self.thinking = thinking
         self.compactor = compactor
+        self._refused: Dict[str, int] = {}
 
     # -- the turn ----------------------------------------------------------- #
 
@@ -180,10 +186,13 @@ class AgentLoop:
                 self._refuse_all(calls, "the run's tool budget is used up")
                 self._emit("step.completed", "llm", {"step": step, "outcome": "tool_budget"})
                 break
-            ran = yield from self._run_tools(calls)
+            ran, repeated = yield from self._run_tools(calls)
             outcome.tools_run += ran
             self._emit("step.completed", "llm", {"step": step, "outcome": "tools",
                                                  "tools": len(calls)})
+            if repeated == len(calls) and max(self._refused.values()) >= REPEAT_LIMIT:
+                outcome.stop_reason = "repeating"
+                break
         else:
             outcome.stop_reason = "step_budget"
         yield {"done": True, "outcome": outcome}
@@ -225,14 +234,29 @@ class AgentLoop:
     # -- the tools a step asked for ----------------------------------------- #
 
     def _run_tools(self, calls: Sequence[ToolCall]):
-        verdicts, judged = self.gate.screen(calls) if self.gate else (
-            {c.id: {"ok": False, "reason": "no_tools"} for c in calls}, None)
+        """Screen a step's calls and run what survives. Returns (ran, repeated).
+
+        A call the gate has already refused is not judged twice. Paying Jev to
+        give the same verdict teaches the model nothing and costs a round trip,
+        so the repeat is answered straight away and counted.
+        """
+        fresh = [c for c in calls if _signature(c) not in self._refused]
+        verdicts: Dict[str, dict] = {}
+        judged = None
+        if fresh:
+            verdicts, judged = self.gate.screen(fresh) if self.gate else (
+                {c.id: {"ok": False, "reason": "no_tools"} for c in fresh}, None)
         if judged is not None:
             self._emit("policy.applied", "policy", {
                 "rule": "tools.gate_allow_at_or_above/v1", "rule_version": "v1",
-                "inputs": {"asked": len(calls)},
-                "action": f"{sum(1 for v in verdicts.values() if v.get('ok'))} of {len(calls)} allowed"},
+                "inputs": {"asked": len(fresh)},
+                "action": f"{sum(1 for v in verdicts.values() if v.get('ok'))} of {len(fresh)} allowed"},
                 usage=call_usage(judged))
+        repeated = 0
+        for call in calls:
+            if _signature(call) in self._refused:
+                verdicts[call.id] = {"ok": False, "reason": "already_refused"}
+                repeated += 1
         ran = 0
         for call in calls:
             self._check()
@@ -244,7 +268,10 @@ class AgentLoop:
             yield {"tool": {"name": call.name, "arguments": call.arguments,
                             "allowed": bool(verdict.get("ok")), "reason": verdict.get("reason")}}
             if not verdict.get("ok"):
-                self._answer(call, False, _refusal(call, verdict))
+                signature = _signature(call)
+                self._refused[signature] = self._refused.get(signature, 0) + 1
+                self._answer(call, False, _refusal(call, verdict),
+                             detail=str(verdict.get("reason") or ""))
                 continue
             started = time.perf_counter()
             try:
@@ -258,7 +285,7 @@ class AgentLoop:
             text = (output or detail or ("done" if ok else "failed"))[:MAX_RESULT_CHARS]
             self._answer(call, ok, text, detail=detail,
                          ms=int((time.perf_counter() - started) * 1000))
-        return ran
+        return ran, repeated
 
     def _answer(self, call: ToolCall, ok: bool, text: str, detail: str = "", ms: int = 0) -> None:
         """Hand a result back to the model, and record it once."""
@@ -314,7 +341,28 @@ def _refusal(call: ToolCall, verdict: Mapping) -> str:
         return f"The user refused this {call.name} call. Do not try it again; work another way."
     if reason == "no_gate":
         return f"{call.name} changes things outside this conversation and could not be checked, so it did not run."
+    if reason == "already_refused":
+        return (f"This exact {call.name} call was refused earlier in this turn, so it was "
+                "not sent to the gate again. Change it, or finish without it.")
+    if reason == "gate_unavailable":
+        return (f"{call.name} could not be checked, so it did not run. Finish the answer "
+                "without it and say plainly that it did not run.")
     probability = verdict.get("probability")
-    return (f"{call.name} was refused by the safety gate"
-            + (f" (p={probability:.2f})" if isinstance(probability, (int, float)) else "")
-            + ". Do it a way that stays inside the workspace and matches what was asked.")
+    score = f" (p={probability:.2f})" if isinstance(probability, (int, float)) else ""
+    if reason == "gate_unsafe":
+        return (f"{call.name} did not run{score}: it reaches outside the workspace, sends "
+                "the user's data away, or destroys material they supplied. Do not retry it "
+                "in another form. Finish without it and say so.")
+    return (f"{call.name} did not run{score}: the user's own instruction does not cover it. "
+            "Sending the same call again gets the same answer. Either aim it at what the "
+            "user actually named, or finish the answer without it and say plainly that it "
+            "did not run.")
+
+
+def _signature(call: ToolCall) -> str:
+    """Identifies a call by what it would do, so a repeat of it is recognisable."""
+    try:
+        arguments = json.dumps(call.arguments, sort_keys=True, ensure_ascii=False)
+    except TypeError:
+        arguments = repr(call.arguments)
+    return f"{call.name}:{arguments}"

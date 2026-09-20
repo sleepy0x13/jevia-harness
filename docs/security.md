@@ -57,6 +57,6 @@
 ## 四、复核命令
 
 ```bash
-python3 -m unittest discover -s tests -t .     # 429 项，含上述安全用例与工具循环
+python3 -m unittest discover -s tests -t .     # 435 项，含上述安全用例与工具循环
 node scripts/ui_tests.mjs                       # 24 项，含应用沙箱策略
 ```

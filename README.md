@@ -357,9 +357,13 @@ JEVia way — with Jev doing the judging where a typed question will do:
 * **House rules.** An `AGENTS.md` (or `JEVIA.md`) in the workspace is read into
   every prompt, the way coding agents read theirs.
 * **A gate on tools with side effects.** Before a worker writes a file or fetches
-  a URL, Jev is asked — for every pending action at once — whether it is safe
-  and clearly part of what you asked for, rather than something the material
-  slipped in. Below 0.8 it does not run.
+  a URL, Jev is asked two questions about every pending action at once. Did your
+  own instruction ask for it, and is it safe to run. They are asked apart because
+  they fail apart: an action you named but that reaches outside the workspace is
+  refused as unsafe, and one the fetched material slipped in is refused as
+  something you never asked for. The action's destination is always shown to the
+  gate in full, whatever it is carrying. Needs 0.8 on the first and 0.5 on the
+  second; a refusal tells the worker which, and the same call is not judged twice.
 * **Self-verification.** Jev checks every answer against the task. A miss gets
   exactly one more attempt, not a loop.
 * **Evidence on disk.** Whatever research kept is written to `evidence.md` beside
@@ -520,7 +524,7 @@ curl -s localhost:8765/api/decide -H 'content-type: application/json' -d '{
 python3 -m unittest discover -s tests -t .
 ```
 
-429 tests, no network and no key required — the engines and the web are faked
+435 tests, no network and no key required — the engines and the web are faked
 at the transport, so decomposition, research filtering, step routing, parallel
 execution, assembly, gating, model choice, escalation, app composition and
 rendering, the host guard, the decision-event protocol, cancelling and the
